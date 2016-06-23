@@ -1,0 +1,35 @@
+{
+  "name": "Vladiator",
+  "version": "1.0.0",
+  "description": "Javascript validation and assertion library for checking incoming parameters.",
+  "main": "vladiator.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vmlweb/Vladiator.git"
+  },
+  "keywords": [
+    "validator",
+    "assert",
+    "optional",
+    "parameter",
+    "check",
+    "recursive",
+    "object",
+    "property",
+    "search"
+  ],
+  "author": "Victor Leach <admin@vmlweb.co.uk>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Vmlweb/Vladiator/issues"
+  },
+  "homepage": "https://github.com/Vmlweb/Vladiator#readme"
+}

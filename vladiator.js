@@ -8,12 +8,13 @@ var Validate = function(value){
 	this._not = false;
 }
 
-//Methods
 Validate.prototype.not = function(){ this._not = true; return this; }
 Validate.prototype.and = function(newValue){ this.skip = false; this.value = newValue; return this; }
+
 Validate.prototype.doExtract = function(){ this.extract = true; return this; }
 Validate.prototype.doRecursive = function(){ this.recursive = true; return this; }
 Validate.prototype.doExtractRecursive = function(){ this.extract = true; this.recursive = true; return this; }
+
 Validate.prototype.didPass = function(){ return !this.fail; }
 Validate.prototype.didFail = function(){ return this.fail; }
 
@@ -181,7 +182,7 @@ Validate.prototype._isString = function(value){
 //! Complex Types
 
 Validate.prototype.isNotArray = function(){ return this.check(this._isNotArray); }
-Validate.prototype._isNotArray = function(value){ return !this._isNotArray(value); }
+Validate.prototype._isNotArray = function(value){ return !this._isArray(value); }
 Validate.prototype.isArray = function(){ return this.check(this._isArray); }
 Validate.prototype._isArray = function(value){
 	
@@ -195,7 +196,7 @@ Validate.prototype.isObject = function(){ return this.check(this._isObject); }
 Validate.prototype._isObject = function(value){
 	
 	//Perform checks
-	return value instanceof Object;
+	return value instanceof Object && !(value instanceof Array);
 }
 
 Validate.prototype.isNotParent = function(){ return this.check(this._isNotParent); }
@@ -275,7 +276,7 @@ Validate.prototype._isEmpty = function(value){
 }
 
 Validate.prototype.hasLength = function(type, field){ return this.check(this._hasLength, Array.from(arguments)); }
-Validate.prototype._hasLength = function(value, length){
+Validate.prototype._hasLength = function(length, value){
 	
 	//Perform checks
 	return value.length === length;
