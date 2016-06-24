@@ -1,13 +1,11 @@
-# Vladiator
-
-[![Build Status](http://bamboo.vmlweb.co.uk:8085/plugins/servlet/wittified/build-status/OPEN-MEAN2)](http://bamboo.vmlweb.co.uk:8085/browse/OPEN-MEAN2)
+# The Vladiator
 
 Javascript validation and assertion library for checking incoming parameters.
 
 ## Getting Started
 
 ```javascript
-var validate = require('vladiator');
+var validate = require('the-vladiator');
 
 //E-mail address
 validate("email@email.com").isRequired().isString().isEmail().didPass();
