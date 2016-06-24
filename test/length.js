@@ -8,7 +8,7 @@ describe('Length', function() {
 	it('should pass when string is empty', function () {
 		
 		var test = validate("").isEmpty();
-		var test2 = validate("").isNotEmpty();
+		var test2 = validate("").notEmpty();
 		var expected = true;
 		
 		test.didPass().should.equal(expected);
@@ -20,7 +20,7 @@ describe('Length', function() {
 	it('should pass when space string is empty', function () {
 		
 		var test = validate(" ").isEmpty();
-		var test2 = validate(" ").isNotEmpty();
+		var test2 = validate(" ").notEmpty();
 		var expected = true;
 		
 		test.didPass().should.equal(expected);
@@ -32,7 +32,7 @@ describe('Length', function() {
 	it('should fail when text and space string is not empty', function () {
 		
 		var test = validate(" test ").isEmpty();
-		var test2 = validate(" test ").isNotEmpty();
+		var test2 = validate(" test ").notEmpty();
 		var expected = false;
 		
 		test.didPass().should.equal(expected);
@@ -44,7 +44,7 @@ describe('Length', function() {
 	it('should fail when text string is not empty', function () {
 		
 		var test = validate("test").isEmpty();
-		var test2 = validate("test").isNotEmpty();
+		var test2 = validate("test").notEmpty();
 		var expected = false;
 		
 		test.didPass().should.equal(expected);
@@ -58,7 +58,7 @@ describe('Length', function() {
 	it('should pass when array is empty', function () {
 		
 		var test = validate([]).isEmpty();
-		var test2 = validate([]).isNotEmpty();
+		var test2 = validate([]).notEmpty();
 		var expected = true;
 		
 		test.didPass().should.equal(expected);
@@ -70,7 +70,7 @@ describe('Length', function() {
 	it('should fail when single array is not empty', function () {
 		
 		var test = validate([""]).isEmpty();
-		var test2 = validate([""]).isNotEmpty();
+		var test2 = validate([""]).notEmpty();
 		var expected = false;
 		
 		test.didPass().should.equal(expected);
@@ -82,7 +82,7 @@ describe('Length', function() {
 	it('should fail when multi array is not empty', function () {
 		
 		var test = validate(["", ""]).isEmpty();
-		var test2 = validate(["", ""]).isNotEmpty();
+		var test2 = validate(["", ""]).notEmpty();
 		var expected = false;
 		
 		test.didPass().should.equal(expected);

@@ -11,7 +11,7 @@ var validate = require('the-vladiator');
 validate("email@email.com").isRequired().isString().isEmail().didPass();
 
 //Name
-validate("John").isRequired().isString().isNotEmpty().didPass();
+validate("John").isRequired().isString().notEmpty().didPass();
 
 //Positive number
 validate("5").isRequired().isNumber().isPositive().didPass();
@@ -21,5 +21,5 @@ validate([1, 2, 3, 4, 5]).isRequired().doExtract().isNumber().isPositive().didPa
 
 //Nested object of strings
 var obj = { nest: { nest3: "test", nest4: "test" }, nest2: { test5: { test6: "test" } } };
-validate(obj).isRequired().doExtract().doRecursive().isString().isNotEmpty().didPass();
+validate(obj).isRequired().doExtract().doRecursive().isString().notEmpty().didPass();
 ```

@@ -11,9 +11,8 @@ var Validate = function(value){
 Validate.prototype.not = function(){ this._not = true; return this; }
 Validate.prototype.and = function(newValue){ this.skip = false; this.value = newValue; return this; }
 
-Validate.prototype.doExtract = function(){ this.extract = true; return this; }
-Validate.prototype.doRecursive = function(){ this.recursive = true; return this; }
-Validate.prototype.doExtractRecursive = function(){ this.extract = true; this.recursive = true; return this; }
+Validate.prototype.extract = function(){ this.extract = true; return this; }
+Validate.prototype.recursive = function(){ this.recursive = true; return this; }
 
 Validate.prototype.didPass = function(){ return !this.fail; }
 Validate.prototype.didFail = function(){ return this.fail; }
@@ -143,8 +142,8 @@ Validate.prototype._isEqual = function(comparison, value){
 	return value === comparison;
 }
 
-Validate.prototype.isNotEqual = function(comparison){ return this.check(this._isNotEqual, Array.from(arguments)); }
-Validate.prototype._isNotEqual = function(comparison, value){
+Validate.prototype.notEqual = function(comparison){ return this.check(this._notEqual, Array.from(arguments)); }
+Validate.prototype._notEqual = function(comparison, value){
 	
 	//Perform checks
 	return value !== comparison;
@@ -152,8 +151,8 @@ Validate.prototype._isNotEqual = function(comparison, value){
 
 //! Literal Types
 
-Validate.prototype.isNotBool = function(){ return this.check(this._isNotBool); }
-Validate.prototype._isNotBool = function(value){ return !this._isBool(value); }
+Validate.prototype.notBool = function(){ return this.check(this._notBool); }
+Validate.prototype._notBool = function(value){ return !this._isBool(value); }
 Validate.prototype.isBool = function(){ return this.check(this._isBool); }
 Validate.prototype._isBool = function(value){
 	
@@ -161,8 +160,8 @@ Validate.prototype._isBool = function(value){
 	return typeof value === 'boolean';
 }
 
-Validate.prototype.isNotNumber = function(){ return this.check(this._isNotNumber); }
-Validate.prototype._isNotNumber = function(value){ return !this._isNumber(value); }
+Validate.prototype.notNumber = function(){ return this.check(this._notNumber); }
+Validate.prototype._notNumber = function(value){ return !this._isNumber(value); }
 Validate.prototype.isNumber = function(){ return this.check(this._isNumber); }
 Validate.prototype._isNumber = function(value){
 	
@@ -170,8 +169,8 @@ Validate.prototype._isNumber = function(value){
 	return typeof value === 'number';
 }
 
-Validate.prototype.isNotString = function(){ return this.check(this._isNotString); }
-Validate.prototype._isNotString = function(value){ return !this._isString(value); }
+Validate.prototype.notString = function(){ return this.check(this._notString); }
+Validate.prototype._notString = function(value){ return !this._isString(value); }
 Validate.prototype.isString = function(){ return this.check(this._isString); }
 Validate.prototype._isString = function(value){
 	
@@ -181,8 +180,8 @@ Validate.prototype._isString = function(value){
 
 //! Complex Types
 
-Validate.prototype.isNotArray = function(){ return this.check(this._isNotArray); }
-Validate.prototype._isNotArray = function(value){ return !this._isArray(value); }
+Validate.prototype.notArray = function(){ return this.check(this._notArray); }
+Validate.prototype._notArray = function(value){ return !this._isArray(value); }
 Validate.prototype.isArray = function(){ return this.check(this._isArray); }
 Validate.prototype._isArray = function(value){
 	
@@ -190,8 +189,8 @@ Validate.prototype._isArray = function(value){
 	return value instanceof Array;
 }
 
-Validate.prototype.isNotObject = function(){ return this.check(this._isNotObject); }
-Validate.prototype._isNotObject = function(value){ return !this._isObject(value); }
+Validate.prototype.notObject = function(){ return this.check(this._notObject); }
+Validate.prototype._notObject = function(value){ return !this._isObject(value); }
 Validate.prototype.isObject = function(){ return this.check(this._isObject); }
 Validate.prototype._isObject = function(value){
 	
@@ -199,8 +198,8 @@ Validate.prototype._isObject = function(value){
 	return value instanceof Object && !(value instanceof Array);
 }
 
-Validate.prototype.isNotParent = function(){ return this.check(this._isNotParent); }
-Validate.prototype._isNotParent = function(value){ return !this._isParent(value); }
+Validate.prototype.notParent = function(){ return this.check(this._notParent); }
+Validate.prototype._notParent = function(value){ return !this._isParent(value); }
 Validate.prototype.isParent = function(){ return this.check(this._isParent); }
 Validate.prototype._isParent = function(value){
 	
@@ -262,8 +261,8 @@ Validate.prototype._hasKeyValue = function(searchKey, searchValue, value){
 
 //! Length
 
-Validate.prototype.isNotEmpty = function(){ return this.check(this._isNotEmpty); }
-Validate.prototype._isNotEmpty = function(value){ return !this._isEmpty(value); }
+Validate.prototype.notEmpty = function(){ return this.check(this._notEmpty); }
+Validate.prototype._notEmpty = function(value){ return !this._isEmpty(value); }
 Validate.prototype.isEmpty = function(){ return this.check(this._isEmpty); }
 Validate.prototype._isEmpty = function(value){
 	
@@ -284,16 +283,16 @@ Validate.prototype._hasLength = function(length, value){
 
 //! Mongoose
 
-Validate.prototype.isNotMongoId = function(){ return this.check(this._isNotMongoId); }
-Validate.prototype._isNotMongoId = function(value){ return !this._isNotMongoId(value); }
+Validate.prototype.notMongoId = function(){ return this.check(this._notMongoId); }
+Validate.prototype._notMongoId = function(value){ return !this._notMongoId(value); }
 Validate.prototype.isMongoId = function(){ return this.check(this._isMongoId); }
 Validate.prototype._isMongoId = function(value){
 	
 	//Perform checks
 	return /^[a-f\d]{24}$/i.test(value);
 }
-Validate.prototype.isNotMongoEnum = function(type, field){ return this.check(this._isNotMongoEnum, Array.from(arguments)); }
-Validate.prototype._isNotMongoEnum = function(type, field, value){ return !this._isMongoEnum(type, field, value); }
+Validate.prototype.notMongoEnum = function(type, field){ return this.check(this._notMongoEnum, Array.from(arguments)); }
+Validate.prototype._notMongoEnum = function(type, field, value){ return !this._isMongoEnum(type, field, value); }
 Validate.prototype.isMongoEnum = function(type, field){ return this.check(this._isMongoEnum, Array.from(arguments)); }
 Validate.prototype._isMongoEnum = function(type, field, value){
 	
@@ -303,8 +302,8 @@ Validate.prototype._isMongoEnum = function(type, field, value){
 
 //! Misc
 
-Validate.prototype.isNotEmail = function(){ return this.check(this._isNotEmail); }
-Validate.prototype._isNotEmail = function(value){ return !this.isEmail(value); }
+Validate.prototype.notEmail = function(){ return this.check(this._notEmail); }
+Validate.prototype._notEmail = function(value){ return !this.isEmail(value); }
 Validate.prototype.isEmail = function(){ return this.check(this._isEmail); }
 Validate.prototype._isEmail = function(value){
 	

@@ -8,7 +8,7 @@ describe('Numbers', function() {
 	it('should fail when undefined is number', function () {
 		
 		var test = validate(undefined).isNumber();
-		var test2 = validate(undefined).isNotNumber();
+		var test2 = validate(undefined).notNumber();
 		var expected = false;
 		
 		test.didPass().should.equal(expected);
@@ -20,7 +20,7 @@ describe('Numbers', function() {
 	it('should fail when null is number', function () {
 		
 		var test = validate(null).isNumber();
-		var test2 = validate(null).isNotNumber();
+		var test2 = validate(null).notNumber();
 		var expected = false;
 		
 		test.didPass().should.equal(expected);
@@ -32,7 +32,7 @@ describe('Numbers', function() {
 	it('should fail when bool is number', function () {
 		
 		var test = validate(false).isNumber();
-		var test2 = validate(false).isNotNumber();
+		var test2 = validate(false).notNumber();
 		var expected = false;
 		
 		test.didPass().should.equal(expected);
@@ -44,7 +44,7 @@ describe('Numbers', function() {
 	it('should fail when string is number', function () {
 		
 		var test = validate("").isNumber();
-		var test2 = validate("").isNotNumber();
+		var test2 = validate("").notNumber();
 		var expected = false;
 		
 		test.didPass().should.equal(expected);
@@ -56,7 +56,7 @@ describe('Numbers', function() {
 	it('should pass when number is number', function () {
 		
 		var test = validate(5).isNumber();
-		var test2 = validate(5).isNotNumber();
+		var test2 = validate(5).notNumber();
 		var expected = true;
 		
 		test.didPass().should.equal(expected);
@@ -68,7 +68,7 @@ describe('Numbers', function() {
 	it('should fail when array is number', function () {
 		
 		var test = validate([]).isNumber();
-		var test2 = validate([]).isNotNumber();
+		var test2 = validate([]).notNumber();
 		var expected = false;
 		
 		test.didPass().should.equal(expected);
@@ -80,7 +80,7 @@ describe('Numbers', function() {
 	it('should fail when object is number', function () {
 		
 		var test = validate({}).isNumber();
-		var test2 = validate({}).isNotNumber();
+		var test2 = validate({}).notNumber();
 		var expected = false;
 		
 		test.didPass().should.equal(expected);
