@@ -1,5 +1,5 @@
 {
-  "name": "Vladiator",
+  "name": "the-vladiator",
   "version": "1.0.0",
   "description": "Javascript validation and assertion library for checking incoming parameters.",
   "main": "vladiator.js",
