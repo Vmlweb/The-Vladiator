@@ -84,7 +84,7 @@ Validate.prototype.check = function(checkItem, args){
 	return this;
 }
 
-//! Optional
+//! Optionals
 
 Validate.prototype.isOptional = function(){ return this.check(this._isOptional); }
 Validate.prototype._isOptional = function(value){
@@ -149,7 +149,7 @@ Validate.prototype._notEqual = function(comparison, value){
 	return value !== comparison;
 }
 
-//! Literal Types
+//! Types
 
 Validate.prototype.notBool = function(){ return this.check(this._notBool); }
 Validate.prototype._notBool = function(value){ return !this._isBool(value); }
@@ -178,8 +178,6 @@ Validate.prototype._isString = function(value){
 	return typeof value === 'string';
 }
 
-//! Complex Types
-
 Validate.prototype.notArray = function(){ return this.check(this._notArray); }
 Validate.prototype._notArray = function(value){ return !this._isArray(value); }
 Validate.prototype.isArray = function(){ return this.check(this._isArray); }
@@ -206,10 +204,11 @@ Validate.prototype._isParent = function(value){
 	//Perform checks
 	return value instanceof Object || value instanceof Array;
 }
-//! Ownership
 
-Validate.prototype.hasNoKey = function(searchKey){ return this.check(this._hasNoKey, Array.from(arguments)); }
-Validate.prototype._hasNoKey = function(searchKey, value){ return !this._hasKey(searchKey, value); }
+//! Objects
+
+Validate.prototype.missingKey = function(searchKey){ return this.check(this._missingKey, Array.from(arguments)); }
+Validate.prototype._missingKey = function(searchKey, value){ return !this._hasKey(searchKey, value); }
 Validate.prototype.hasKey = function(searchKey){ return this.check(this._hasKey, Array.from(arguments)); }
 Validate.prototype._hasKey = function(searchKey, value){
 	
@@ -225,8 +224,8 @@ Validate.prototype._hasKey = function(searchKey, value){
 	return found;
 }
 
-Validate.prototype.hasNoValue = function(searchValue){ return this.check(this._hasNoValue, Array.from(arguments)); }
-Validate.prototype._hasNoValue = function(searchValue, value){ return !this._hasNoValue(searchKey, value); }
+Validate.prototype.missingValue = function(searchValue){ return this.check(this._missingValue, Array.from(arguments)); }
+Validate.prototype._missingValue = function(searchValue, value){ return !this._hasValue(searchValue, value); }
 Validate.prototype.hasValue = function(searchValue){ return this.check(this._hasValue, Array.from(arguments)); }
 Validate.prototype._hasValue = function(searchValue, value){
 	
@@ -242,8 +241,8 @@ Validate.prototype._hasValue = function(searchValue, value){
 	return found;
 }
 
-Validate.prototype.hasNoKeyValue = function(searchKey, searchValue){ return this.check(this._hasNoKeyValue, Array.from(arguments)); }
-Validate.prototype._hasNoKeyValue = function(searchKey, searchValue, value){ return !this._hasKeyValue(searchKey, searchValue, value); }
+Validate.prototype.missingKeyValue = function(searchKey, searchValue){ return this.check(this._missingKeyValue, Array.from(arguments)); }
+Validate.prototype._missingKeyValue = function(searchKey, searchValue, value){ return !this._hasKeyValue(searchKey, searchValue, value); }
 Validate.prototype.hasKeyValue = function(searchKey, searchValue){ return this.check(this._hasKeyValue, Array.from(arguments)); }
 Validate.prototype._hasKeyValue = function(searchKey, searchValue, value){
 	

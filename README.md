@@ -20,6 +20,16 @@ validate("5").isRequired().isNumber().isPositive().didPass();
 validate([1, 2, 3, 4, 5]).isRequired().doExtract().isNumber().isPositive().didPass();
 
 //Nested object of strings
-var obj = { nest: { nest3: "test", nest4: "test" }, nest2: { test5: { test6: "test" } } };
+var obj = {
+	nest: {
+		nest3: "test",
+		nest4: "test"
+	},
+	nest2: {
+		test5: {
+			test6: "test"
+		}
+	}
+};
 validate(obj).isRequired().doExtract().doRecursive().isString().notEmpty().didPass();
 ```
