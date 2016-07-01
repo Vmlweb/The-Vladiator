@@ -84,6 +84,15 @@ Validate.prototype.check = function(checkItem, args){
 	return this;
 }
 
+//! Custom
+
+Validate.prototype.is = function(custom){ return this.check(this._is, Array.from(arguments)); }
+Validate.prototype._is = function(custom, value){
+	
+	//Perform checks
+	return custom(value);
+}
+
 //! Optionals
 
 Validate.prototype.isOptional = function(){ return this.check(this._isOptional); }
@@ -102,8 +111,8 @@ Validate.prototype._isRequired = function(value){
 	return value !== undefined;
 }
 
-Validate.prototype.isOptionalWithValue = function(){ return this.check(this._isOptionalWithValue); }
-Validate.prototype._isOptionalWithValue = function(value){
+Validate.prototype.valueOptional = function(){ return this.check(this._valueOptional); }
+Validate.prototype._valueOptional = function(value){
 	
 	//Perform checks
 	if (value === undefined || value === null){
@@ -111,26 +120,11 @@ Validate.prototype._isOptionalWithValue = function(value){
 	}
 	return true;
 }
-Validate.prototype.isRequiredWithValue = function(){ return this.check(this._isRequiredWithValue); }
-Validate.prototype._isRequiredWithValue = function(value){
+Validate.prototype.valueRequired = function(){ return this.check(this._valueRequired); }
+Validate.prototype._valueRequired = function(value){
 	
 	//Perform checks
 	return value !== undefined && value !== null;
-}
-
-//! Numeric Checks
-
-Validate.prototype.isNegative = function(){ return this.check(this._isNegative); }
-Validate.prototype._isNegative = function(value){
-	
-	//Perform checks
-	return value < 0;
-}
-Validate.prototype.isPositive = function(){ return this.check(this._isPositive); }
-Validate.prototype._isPositive = function(value){
-	
-	//Perform checks
-	return value >= 0;
 }
 
 //! Equality
@@ -147,6 +141,71 @@ Validate.prototype._notEqual = function(comparison, value){
 	
 	//Perform checks
 	return value !== comparison;
+}
+
+//! Numeric Checks
+
+Validate.prototype.higherThan = function(amount){ return this.check(this._higherThan, Array.from(arguments)); }
+Validate.prototype._higherThan = function(amount, value){
+	
+	//Perform checks
+	return value > amount;
+}
+
+Validate.prototype.lowerThan = function(amount){ return this.check(this._lowerThan, Array.from(arguments)); }
+Validate.prototype._lowerThan = function(amount, value){
+	
+	//Perform checks
+	return value < amount;
+}
+
+Validate.prototype.isNegative = function(){ return this.check(this._isNegative); }
+Validate.prototype._isNegative = function(value){
+	
+	//Perform checks
+	return value < 0;
+}
+Validate.prototype.isPositive = function(){ return this.check(this._isPositive); }
+Validate.prototype._isPositive = function(value){
+	
+	//Perform checks
+	return value >= 0;
+}
+
+//! Length
+
+Validate.prototype.notEmpty = function(){ return this.check(this._notEmpty); }
+Validate.prototype._notEmpty = function(value){ return !this._isEmpty(value); }
+Validate.prototype.isEmpty = function(){ return this.check(this._isEmpty); }
+Validate.prototype._isEmpty = function(value){
+	
+	//Perform checks
+	if (this._isString(value)){
+		return value.trim().length <= 0;
+	}else{
+		return value.length <= 0;
+	}
+}
+
+Validate.prototype.longerThan = function(length){ return this.check(this._longerThan, Array.from(arguments)); }
+Validate.prototype._longerThan = function(length, value){
+	
+	//Perform checks
+	return value.length > length;
+}
+
+Validate.prototype.shorterThan = function(length){ return this.check(this._shorterThan, Array.from(arguments)); }
+Validate.prototype._shorterThan = function(length, value){
+	
+	//Perform checks
+	return value.length < length;
+}
+
+Validate.prototype.hasLength = function(length){ return this.check(this._hasLength, Array.from(arguments)); }
+Validate.prototype._hasLength = function(length, value){
+	
+	//Perform checks
+	return value.length === length;
 }
 
 //! Types
@@ -258,26 +317,15 @@ Validate.prototype._hasKeyValue = function(searchKey, searchValue, value){
 	return found;
 }
 
-//! Length
+//! Misc
 
-Validate.prototype.notEmpty = function(){ return this.check(this._notEmpty); }
-Validate.prototype._notEmpty = function(value){ return !this._isEmpty(value); }
-Validate.prototype.isEmpty = function(){ return this.check(this._isEmpty); }
-Validate.prototype._isEmpty = function(value){
+Validate.prototype.notEmail = function(){ return this.check(this._notEmail); }
+Validate.prototype._notEmail = function(value){ return !this.isEmail(value); }
+Validate.prototype.isEmail = function(){ return this.check(this._isEmail); }
+Validate.prototype._isEmail = function(value){
 	
 	//Perform checks
-	if (this._isString(value)){
-		return value.trim().length <= 0;
-	}else{
-		return value.length <= 0;
-	}
-}
-
-Validate.prototype.hasLength = function(type, field){ return this.check(this._hasLength, Array.from(arguments)); }
-Validate.prototype._hasLength = function(length, value){
-	
-	//Perform checks
-	return value.length === length;
+	return /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i.test(value);
 }
 
 //! Mongoose
@@ -297,17 +345,6 @@ Validate.prototype._isMongoEnum = function(type, field, value){
 	
 	//Perform checks
 	return type.schema.path(field).enumValues.indexOf(value) >= 0;
-}
-
-//! Misc
-
-Validate.prototype.notEmail = function(){ return this.check(this._notEmail); }
-Validate.prototype._notEmail = function(value){ return !this.isEmail(value); }
-Validate.prototype.isEmail = function(){ return this.check(this._isEmail); }
-Validate.prototype._isEmail = function(value){
-	
-	//Perform checks
-	return /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i.test(value);
 }
 
 module.exports = function(value){ return new Validate(value); }
