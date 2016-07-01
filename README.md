@@ -4,38 +4,149 @@
 
 Javascript validation and assertion library.
 
-## Getting Started
+## Getting Started Vladiating
+
+Below are some basic examples of usage.
 
 ```javascript
 var validate = require('the-vladiator');
 
 //E-mail address
-validate('email@email.com').isRequired().isString().isEmail().didPass();
+validate('email@email.com').isRequired().isString().isEmail().didPass(); //returns true if passed validation
 
 //Name
-validate('John').isRequired().isString().notEmpty().didPass();
+validate('John').isRequired().isString().notEmpty().didFail(); //returns true if failed validation
 
 //Positive number
-validate('5').isRequired().isNumber().isPositive().didPass();
+validate('5').isRequired().isNumber().isPositive().didFail();
+```
 
-//Array of positive numbers
-validate([1, 2, 3, 4, 5]).isRequired().doExtract().isNumber().isPositive().didPass();
+### Type Vladiation
 
-//Object key and values
-validate({ name: 'John' }).isRequired().hasKey('name').didPass();
-validate({ name: 'John' }).isRequired().hasKey('John').didPass();
+You can test whether your input is a certain type
 
-//Nested object of strings
-var obj = {
-	nest: {
-		nest3: 'test',
-		nest4: 'test'
-	},
-	nest2: {
-		test5: {
-			test6: 'test'
-		}
-	}
-};
-validate(obj).isRequired().doExtract().doRecursive().isString().notEmpty().didPass();
+```javascript
+.isBool()
+.notBool()
+
+.isNumber()
+.notNumber()
+
+.isString()
+.notString()
+
+.isArray()
+.notArray()
+
+.isObject()
+.notObject()
+
+//Checks for an array or object
+.isParent()
+.notParent()
+```
+
+### Equality Vladiation
+
+```javascript
+//Checks for equality using ===
+
+.isEqual(comparison)
+
+.notEqual(comparison)
+```
+
+### Numeric Vladiation
+
+```javascript
+.isPositive()
+.isNegative()
+
+.higherThan(amount)
+.lowerThan(amount)
+```
+
+### Length Vladiation
+
+```javascript
+.isEmpty()
+.notEmpty()
+
+.hasLength(length)
+
+.longerThan(length)
+.shorterThan(length)
+```
+
+### Optional Vladiation
+
+```javascript
+//Ensures the value is defined
+.isRequired()
+
+//Skips remaining checks if value is undefined
+.isOptional()
+
+//Ensures that value is defined and not null
+.valueRequired()
+
+//Skips remaining checks if value is undefined or null
+.valueOptional()
+```
+
+### Object Vladiation
+
+```javasript
+.missingKey(key)
+.hasKey(key)
+
+.missingValue(value)
+.hasValue(value)
+
+.missingKeyValue(key, value)
+.hasKeyValue(key, value)
+```
+
+### Nested Vladiation
+
+```javascript
+//Iterates one level deep in arrays or objects
+.extract()
+
+//Iterates through all nested levels
+.recursive()
+```
+
+### Custom Vladiation
+
+```javascript
+//Validates whether input is pie
+.is(function(value){
+	return value === Math.PI;
+});
+```
+
+### Other Vladiatables
+
+```javascript
+.isEmail(email)
+.notEmail(email)
+
+//Checks for MongoDB ObjectIds
+.isMongoId()
+.notMongoId()
+
+//Checks whether value is an Enum.
+.isMongoEnum(type, field) //Takes a MongoDB model and property name respectively
+.notMongoEnum(type, field)
+```
+
+### Other Stuff
+
+```javascript
+//Reaplces the currently checking value
+.and(newValue)
+
+//Inverts the following checks result
+.not()
 ```
