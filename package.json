@@ -1,6 +1,6 @@
 {
   "name": "the-vladiator",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Javascript validation and assertion library for checking incoming parameters.",
   "main": "vladiator.js",
   "directories": {
