@@ -96,7 +96,7 @@ You can test whether your input is a certain type
 
 ### Object Vladiation
 
-```javasript
+```javascript
 .missingKey(key)
 .hasKey(key)
 
