@@ -144,7 +144,7 @@ You can test whether your input is a certain type
 ### Other Stuff
 
 ```javascript
-//Reaplces the currently checking value
+//Replaces the currently checking value
 .and(newValue)
 
 //Inverts the following checks result
