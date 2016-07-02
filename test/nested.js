@@ -3,7 +3,76 @@ if (typeof module !== 'undefined' && typeof module.exports !== 'undefined'){
 	var validate = require('../vladiator.js');
 }
 
+var primaryColor = function(value){
+	return ['blue', 'yellow', 'red', 'green'].indexOf(value.toLowerCase()) > -1;
+}
+
 describe('Nested', function() {
+	
+	//! open
+	
+	it('should pass for custom primary colour checker when nested', function () {
+		
+		var obj = {
+			first: 'orange',
+			second: 'blue'
+		};
+		
+		var test = validate(obj).open('second').isString().is(primaryColor);
+		var test2 = validate(obj).open('first').isString().is(primaryColor);
+		var expected = true;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+		test2.didPass().should.not.equal(expected);
+		test2.didFail().should.equal(expected);
+	});
+	
+	it('should pass for custom primary colour checker when nested two levels with dot', function () {
+		
+		var obj = {
+			first: {
+				second: 'blue'
+			},
+			third: {
+				fourth: 'orange'
+			}
+		}
+		
+		var test = validate(obj).open('first.second').isString().is(primaryColor);
+		var test2 = validate(obj).open('third.fourth').isString().is(primaryColor);
+		var expected = true;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+		test2.didPass().should.not.equal(expected);
+		test2.didFail().should.equal(expected);
+	});
+	
+	it('should pass for custom primary colour checker when nested three levels with dot', function () {
+		
+		var obj = {
+			first: {
+				second: { 
+					third: 'blue'
+				}
+			},
+			fourth: {
+				fifth: {
+					sixth: 'orange'
+				}
+			}
+		};
+		
+		var test = validate(obj).open('first.second.third').isString().is(primaryColor);
+		var test2 = validate(obj).open('fourth.fifth.sixth').isString().is(primaryColor);
+		var expected = true;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+		test2.didPass().should.not.equal(expected);
+		test2.didFail().should.equal(expected);
+	});
 	
 	//! extract array
 	

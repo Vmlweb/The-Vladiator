@@ -16,10 +16,7 @@
 		this._not = false;
 	}
 	
-	//! Misc
-	
-	Validate.prototype.not = function(){ this._not = true; return this; }
-	Validate.prototype.and = function(newValue){ this._skip = false; this.value = newValue; return this; }
+	//! Nesting
 	
 	Validate.prototype.recursive = function(){ this._recursive = true; return this; }
 	Validate.prototype.extract = function(field = null){
@@ -36,11 +33,7 @@
 	Validate.prototype.open = function(field){
 		
 		//Move one or more levels deeper into the value
-		if (field instanceof Array){
-			for (var i in field){
-				this.value = this.value[field[i]];
-			}
-		}else if (field.indexOf(".") > -1){
+		if (field.indexOf(".") > -1){
 			var fields = field.split(".");
 			for (var i in fields){
 				this.value = this.value[fields[i]];
@@ -51,6 +44,14 @@
 		
 		return this;
 	}
+	
+	//! Value
+	
+	Validate.prototype.not = function(){ this._not = true; return this; }
+	Validate.prototype.and = function(newValue){ this._skip = false; this.value = newValue; return this; }
+	
+	Validate.prototype.upperCase = function(){ this.value = this.value.toUpperCase(); return this; }
+	Validate.prototype.lowerCase = function(){ this.value = this.value.toLowerCase(); return this; }
 	
 	//! Completion
 	
@@ -187,6 +188,15 @@
 		
 		//Perform checks
 		return value !== comparison;
+	}
+	
+	Validate.prototype.notContains = function(comparison){ return this.check(this._notContains, Array.from(arguments)); }
+	Validate.prototype._notContains = function(comparison, value){ return !this._contains(comparison, value); }
+	Validate.prototype.contains = function(comparison){ return this.check(this._contains, Array.from(arguments)); }
+	Validate.prototype._contains = function(comparison, value){
+		
+		//Perform checks
+		return value.indexOf(comparison) > -1;
 	}
 	
 	//! Numeric Checks

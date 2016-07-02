@@ -163,4 +163,30 @@ describe('Types', function() {
 		test2.didFail().should.equal(expected);
 	});
 	
+	//! Contains
+	
+	it('should pass when testing contains test', function () {
+		
+		var test = validate('testing').contains('test');
+		var test2 = validate('testing').notContains('test');
+		var expected = true;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+		test2.didPass().should.not.equal(expected);
+		test2.didFail().should.equal(expected);
+	});
+	
+	it('should fail when testing contains fart', function () {
+		
+		var test = validate('testing').contains('fart');
+		var test2 = validate('testing').notContains('fart');
+		var expected = false;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+		test2.didPass().should.not.equal(expected);
+		test2.didFail().should.equal(expected);
+	});
+	
 });
