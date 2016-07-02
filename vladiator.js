@@ -41,6 +41,7 @@
 			if (this._recursive){
 				
 				//Recursive object validation
+				var self = this;
 				var checkObject;
 				checkObject = function(object){
 					for (var i in object){
@@ -51,14 +52,16 @@
 								checkObject(object[i]);
 							}else{
 								
+								//Check for fail first for recursion
+								if (self._fail){ return self; }
+								
 								//Validate deep child item
 								if (args){
-									this._fail = !checkItem.apply(this, args.concat([object[i], i]));
+									self._fail = !checkItem.apply(self, args.concat([object[i], i]));
 								}else{
-									this._fail = !checkItem.call(this, object[i]);
+									self._fail = !checkItem.call(self, object[i]);
 								}
-								if (this._not){ this._fail = !this._fail; }
-								if (this._fail){ return this; }
+								if (self._not){ self._fail = !self._fail; }
 							}
 						}
 					}
