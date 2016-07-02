@@ -92,6 +92,44 @@ describe('Length', function() {
 		test2.didPass().should.not.equal(expected);
 		test2.didFail().should.equal(expected);
 	});
+	
+	//! isEmpty Object
+	
+	it('should pass when object is empty', function () {
+		
+		var test = validate({}).isEmpty();
+		var test2 = validate({}).notEmpty();
+		var expected = true;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+		test2.didPass().should.not.equal(expected);
+		test2.didFail().should.equal(expected);
+	});
+	
+	it('should fail when single object is not object', function () {
+		
+		var test = validate({ test: '' }).isEmpty();
+		var test2 = validate({ test: '' }).notEmpty();
+		var expected = false;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+		test2.didPass().should.not.equal(expected);
+		test2.didFail().should.equal(expected);
+	});
+	
+	it('should fail when multi object is not empty', function () {
+		
+		var test = validate({ test: '', test2: ''}).isEmpty();
+		var test2 = validate({ test: '', test2: ''}).notEmpty();
+		var expected = false;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+		test2.didPass().should.not.equal(expected);
+		test2.didFail().should.equal(expected);
+	});
 
 	//! hasLength String
 	
@@ -222,6 +260,80 @@ describe('Length', function() {
 		test.didPass().should.equal(expected);
 		test.didFail().should.not.equal(expected);
 	});
+	
+	//! hasLength Object
+	
+	it('should pass when empty object has 0 length', function () {
+		
+		var test = validate({}).hasLength(0);
+		var expected = true;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+	});
+	
+	it('should fail when empty object has 1 length', function () {
+		
+		var test = validate({}).hasLength(1);
+		var expected = false;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+	});
+	
+	it('should pass when object has 2 length', function () {
+		
+		var test = validate({ h: 'h', e: 'e'}).hasLength(2);
+		var expected = true;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+	});
+	
+	it('should fail when object has 3 length', function () {
+		
+		var test = validate({ h: 'h', e: 'e'}).hasLength(3);
+		var expected = false;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+	});
+	
+	it('should pass when object has 5 length', function () {
+		
+		var test = validate({ h: 'h', e: 'e', l: 'l', d: 'l', o: 'o' }).hasLength(5);
+		var expected = true;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+	});
+	
+	it('should fail when object has 6 length', function () {
+		
+		var test = validate({ h: 'h', e: 'e', l: 'l', d: 'l', o: 'o' }).hasLength(6);
+		var expected = false;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+	});
+	
+	it('should pass when comparing equal object sizes', function () {
+		
+		var test = validate({ h: 'h', e: 'e', l: 'l', d: 'l', o: 'o' }).hasLength({ h: 'h', e: 'e', l: 'l', d: 'l', o: 'o' });
+		var expected = true;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+	});
+	
+	it('should fail when comparing inequal object sizes', function () {
+		
+		var test = validate({ e: 'e', l: 'l', d: 'l', o: 'o' }).hasLength({ h: 'h', e: 'e', l: 'l', d: 'l', o: 'o' });
+		var expected = false;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+	});
 		
 	//! longerThan
 	
@@ -251,6 +363,15 @@ describe('Length', function() {
 		test.didPass().should.equal(expected);
 		test.didFail().should.not.equal(expected);
 	});
+	
+	it('should pass when object is longer than 2', function () {
+		
+		var test = validate({ h: 'h', e: 'e', y: 'y' }).longerThan(2);
+		var expected = true;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+	});
 		
 	//! shorterThan
 	
@@ -275,6 +396,15 @@ describe('Length', function() {
 	it('should fail when array is shorter than 2', function () {
 		
 		var test = validate(['h', 'e', 'y']).shorterThan(2);
+		var expected = false;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+	});
+	
+	it('should fail when object is shorter than 2', function () {
+		
+		var test = validate({ h: 'h', e: 'e', y: 'y' }).shorterThan(2);
 		var expected = false;
 		
 		test.didPass().should.equal(expected);

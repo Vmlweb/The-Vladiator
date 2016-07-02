@@ -198,7 +198,7 @@
 		if (this._isString(value)){
 			return value.trim().length <= 0;
 		}else{
-			return value.length <= 0;
+			return (this._isObject(value) ? Object.keys(value) : value).length <= 0;
 		}
 	}
 	
@@ -206,10 +206,10 @@
 	Validate.prototype._longerThan = function(length, value){
 		
 		//Perform checks
-		if (length.hasOwnProperty('length')){
-			return value.length > length.length;
+		if (length.hasOwnProperty('length') || this._isObject(length)){
+			return (this._isObject(value) ? Object.keys(value) : value).length > (this._isObject(length) ? Object.keys(length) : length).length;
 		}else{
-			return value.length > length;
+			return (this._isObject(value) ? Object.keys(value) : value).length > (this._isObject(length) ? Object.keys(length) : length);
 		}
 	}
 	
@@ -217,10 +217,10 @@
 	Validate.prototype._shorterThan = function(length, value){
 		
 		//Perform checks
-		if (length.hasOwnProperty('length')){
-			return value.length < length.length;
+		if (length.hasOwnProperty('length') || this._isObject(length)){
+			return (this._isObject(value) ? Object.keys(value) : value).length < (this._isObject(length) ? Object.keys(length) : length).length;
 		}else{
-			return value.length < length;
+			return (this._isObject(value) ? Object.keys(value) : value).length < (this._isObject(length) ? Object.keys(length) : length);
 		}
 	}
 	
@@ -228,7 +228,11 @@
 	Validate.prototype._hasLength = function(length, value){
 		
 		//Perform checks
-		return value.length === length;
+		if (length.hasOwnProperty('length') || this._isObject(length)){
+			return (this._isObject(value) ? Object.keys(value) : value).length === (this._isObject(length) ? Object.keys(length) : length).length;
+		}else{
+			return (this._isObject(value) ? Object.keys(value) : value).length === (this._isObject(length) ? Object.keys(length) : length);
+		}
 	}
 	
 	//! Type Checks
