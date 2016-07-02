@@ -1,5 +1,7 @@
-var assert = require('chai').should();
-var validate = require('../vladiator.js');
+if (typeof module !== 'undefined' && typeof module.exports !== 'undefined'){
+	var assert = require('chai').should();
+	var validate = require('../vladiator.js');
+}
 
 describe('Misc', function() {
 	
