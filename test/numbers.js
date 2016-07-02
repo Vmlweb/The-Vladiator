@@ -149,4 +149,62 @@ describe('Numbers', function() {
 		test.didFail().should.not.equal(expected);
 	});
 	
+	//! higherThan
+	
+	it('should pass when 20 is higher than 10', function () {
+		
+		var test = validate(20).higherThan(10);
+		var expected = true;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+	});
+	
+	it('should pass when -5 is higher than -1', function () {
+		
+		var test = validate(-1).higherThan(-5);
+		var expected = true;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+	});
+	
+	it('should fail when 5 is higher than 10', function () {
+		
+		var test = validate(5).higherThan(10);
+		var expected = false;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+	});
+	
+	//! lowerThan
+	
+	it('should pass when 20 is lower than 30', function () {
+		
+		var test = validate(20).lowerThan(30);
+		var expected = true;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+	});
+	
+	it('should pass when -5 is lower than -10', function () {
+		
+		var test = validate(-10).lowerThan(-5);
+		var expected = true;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+	});
+	
+	it('should fail when 15 is lower than 10', function () {
+		
+		var test = validate(15).lowerThan(10);
+		var expected = false;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+	});
+	
 });
