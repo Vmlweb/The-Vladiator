@@ -9,11 +9,17 @@
   "dependencies": {},
   "devDependencies": {
     "chai": "^3.5.0",
+    "karma": "^1.1.0",
+    "karma-chai": "^0.1.0",
+    "karma-coverage": "^1.0.0",
+    "karma-junit-reporter": "^1.1.0",
+    "karma-mocha": "^1.1.1",
+    "karma-phantomjs-launcher": "^1.0.1",
     "mocha": "^2.5.3",
     "mocha-junit-reporter": "^1.11.1"
   },
   "scripts": {
-    "test": "mocha test --reporter mocha-junit-reporter; mocha test"
+    "test": "mocha test --reporter mocha-junit-reporter --reporter-options mochaFile=./logs/test-results.xml; mocha test; karma start"
   },
   "repository": {
     "type": "git",

@@ -18,10 +18,10 @@ validate('email@email.com').isRequired().isString().isEmail().didPass(); //retur
 validate('John').isRequired().isString().notEmpty().didFail(); //returns true if failed validation
 
 //Positive number
-validate('5').isRequired().isNumber().isPositive().didFail();
+validate('5').isRequired().isNumber().isPositive().throws("Number must be positive"); //throws if failed validation
 ```
 
-### Type Vladiation
+### Type Checks
 
 You can test whether your input is a certain type
 
@@ -46,7 +46,7 @@ You can test whether your input is a certain type
 .notParent()
 ```
 
-### Equality Vladiation
+### Equality Checks
 
 ```javascript
 //Checks for equality using ===
@@ -56,7 +56,7 @@ You can test whether your input is a certain type
 .notEqual(comparison)
 ```
 
-### Numeric Vladiation
+### Numeric Checks
 
 ```javascript
 .isPositive()
@@ -66,7 +66,7 @@ You can test whether your input is a certain type
 .lowerThan(amount)
 ```
 
-### Length Vladiation
+### Length Checks
 
 ```javascript
 .isEmpty()
@@ -78,7 +78,7 @@ You can test whether your input is a certain type
 .shorterThan(length)
 ```
 
-### Optional Vladiation
+### Optional Checks
 
 ```javascript
 //Ensures the value is defined
@@ -94,7 +94,7 @@ You can test whether your input is a certain type
 .valueOptional()
 ```
 
-### Object Vladiation
+### Object Checks
 
 ```javascript
 .missingKey(key)
@@ -107,17 +107,17 @@ You can test whether your input is a certain type
 .hasKeyValue(key, value)
 ```
 
-### Nested Vladiation
+### Nested Checks
 
 ```javascript
-//Iterates one level deep in arrays or objects
+//Iterates one level deep in arrays or objects, all subsequent checks will be performed on each
 .extract()
 
-//Iterates through all nested levels
+//Iterates through all nested levels, all subsequent checks will be performed on each
 .recursive()
 ```
 
-### Custom Vladiation
+### Custom Checks
 
 ```javascript
 //Validates whether input is pie
@@ -126,7 +126,7 @@ You can test whether your input is a certain type
 });
 ```
 
-### Other Vladiatables
+### Other Checks
 
 ```javascript
 .isEmail(email)
@@ -137,7 +137,7 @@ You can test whether your input is a certain type
 .notMongoId()
 
 //Checks whether value is an Enum.
-.isMongoEnum(type, field) //Takes a MongoDB model and property name respectively
+.isMongoEnum(type, field) //Takes a mongoose model and property name respectively
 .notMongoEnum(type, field)
 ```
 
