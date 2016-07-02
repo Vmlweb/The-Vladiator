@@ -4,6 +4,31 @@
 
 Javascript validation and assertion library. Any optimization suggestions are welcome.
 
+## Installation
+
+You can grab the latest version via NPM or Bower.
+
+```bash
+npm install --save the-vladiator
+bower install --save the-vladiator
+```
+
+Then either use require through NodeJS.
+
+```javascript
+var validate = require('the-vladiator');
+validate('email@email.com')
+```
+
+Or add as a script to your HTML.
+
+```html
+<script src="vladiator.js"></script>
+```
+```javascript
+validate('email@email.com')
+```
+
 ## Getting Started
 
 Below are some basic examples of usage.
@@ -23,7 +48,7 @@ validate('5').isRequired().isNumber().isPositive().throws('Number must be positi
 
 ### Type Checks
 
-You can test whether your input is a certain type
+You can test whether your input is a certain type.
 
 ```javascript
 .isBool()
