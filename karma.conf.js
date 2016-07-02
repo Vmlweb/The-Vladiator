@@ -7,6 +7,7 @@ module.exports = function(config) {
 			'karma-coverage',
 			'karma-phantomjs-launcher',
 			'karma-junit-reporter',
+			'karma-mocha-reporter',
 			'karma-mocha',
 			'karma-chai'
 		],
@@ -14,7 +15,7 @@ module.exports = function(config) {
 		//Includes
 		files: ['vladiator.js', 'test/*.js'],
 		preprocessors: { 'vladiator.js': ['coverage'] },
-		reporters: ['junit', 'coverage'],
+		reporters: ['mocha', 'junit', 'coverage'],
 		
 		//Browser
 		browsers: ['PhantomJS'],
