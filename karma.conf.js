@@ -24,14 +24,14 @@ module.exports = function(config) {
 		//Reporters
 		coverageReporter: {
 			reporters: [
-				{type: 'json', dir:'logs', file: 'coverage-final.json', subdir: '.'},
-				{type: 'html', dir:'logs', subdir: '.'},
-				{type: 'clover', dir:'logs', file: 'clover.xml', subdir: '.'},
+				{type: 'json', dir:'logs/coverage', file: 'coverage-final.json', subdir: '.'},
+				{type: 'html', dir:'logs/coverage', subdir: '.'},
+				{type: 'clover', dir:'logs/coverage', file: 'clover.xml', subdir: '.'},
 				{type: 'text-summary'}
 			]
 		},
 		junitReporter: {
-			outputDir: 'logs'
+			outputDir: 'logs/tests'
 		}
 	});
 };

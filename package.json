@@ -19,7 +19,7 @@
     "mocha-junit-reporter": "^1.11.1"
   },
   "scripts": {
-    "test": "mocha test --reporter mocha-junit-reporter --reporter-options mochaFile=./logs/test-results.xml; mocha test; karma start"
+    "test": "mocha test --reporter mocha-junit-reporter --reporter-options mochaFile=./logs/tests/test-results.xml; mocha test; karma start"
   },
   "repository": {
     "type": "git",
