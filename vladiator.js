@@ -24,7 +24,7 @@
 	Validate.prototype.extract = function(){ this._extract = true; return this; }
 	Validate.prototype.recursive = function(){ this._recursive = true; return this; }
 	
-	//! Completion Checks
+	//! Completion
 	
 	Validate.prototype.throws = function(exception){ if (this.didFail()){ throw exception; } };
 	
@@ -232,6 +232,33 @@
 	}
 	
 	//! Type Checks
+	
+	Validate.prototype.notBool = function(){ return this.check(this._notBool); }
+	Validate.prototype._notBool = function(value){ return !this._isBool(value); }
+	Validate.prototype.isBool = function(){ return this.check(this._isBool); }
+	Validate.prototype._isBool = function(value){
+		
+		//Perform checks
+		return typeof value === 'boolean';
+	}
+	
+	Validate.prototype.notTrue = function(){ return this.check(this._notTrue); }
+	Validate.prototype._notTrue = function(value){ return !this._isTrue(value); }
+	Validate.prototype.isTrue = function(){ return this.check(this._isTrue); }
+	Validate.prototype._isTrue = function(value){
+		
+		//Perform checks
+		return value === true;
+	}
+	
+	Validate.prototype.notFalse = function(){ return this.check(this._notFalse); }
+	Validate.prototype._notFalse = function(value){ return !this._isFalse(value); }
+	Validate.prototype.isFalse = function(){ return this.check(this._isFalse); }
+	Validate.prototype._isFalse = function(value){
+		
+		//Perform checks
+		return value === false;
+	}
 	
 	Validate.prototype.notBool = function(){ return this.check(this._notBool); }
 	Validate.prototype._notBool = function(value){ return !this._isBool(value); }

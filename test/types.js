@@ -5,6 +5,58 @@ if (typeof module !== 'undefined' && typeof module.exports !== 'undefined'){
 
 describe('Types', function() {
 	
+	//! isTrue
+	
+	it('should pass when true is true', function () {
+		
+		var test = validate(true).isTrue();
+		var test2 = validate(true).notTrue();
+		var expected = true;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+		test2.didPass().should.not.equal(expected);
+		test2.didFail().should.equal(expected);
+	});
+	
+	it('should fail when true is false', function () {
+		
+		var test = validate(false).isTrue();
+		var test2 = validate(false).notTrue();
+		var expected = false;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+		test2.didPass().should.not.equal(expected);
+		test2.didFail().should.equal(expected);
+	});
+	
+	//! isFalse
+	
+	it('should pass when false is false', function () {
+		
+		var test = validate(false).isFalse();
+		var test2 = validate(false).notFalse();
+		var expected = true;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+		test2.didPass().should.not.equal(expected);
+		test2.didFail().should.equal(expected);
+	});
+	
+	it('should fail when false is true', function () {
+		
+		var test = validate(true).isFalse();
+		var test2 = validate(true).notFalse();
+		var expected = false;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+		test2.didPass().should.not.equal(expected);
+		test2.didFail().should.equal(expected);
+	});
+	
 	//! isBool
 	
 	it('should fail when undefined is bool', function () {
