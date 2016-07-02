@@ -43,7 +43,7 @@ validate('email@email.com').isRequired().isString().isEmail().didPass(); //retur
 validate('John').isRequired().isString().notEmpty().didFail(); //returns true if failed validation
 
 //Positive number
-validate('5').isRequired().isNumber().isPositive().throws('Number must be positive'); //throws if failed validation
+validate(5).isRequired().isNumber().isPositive().throws('Number must be positive'); //throws if failed validation
 ```
 
 ### Type Checks
