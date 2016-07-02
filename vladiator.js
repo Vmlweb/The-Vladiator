@@ -206,14 +206,22 @@
 	Validate.prototype._longerThan = function(length, value){
 		
 		//Perform checks
-		return value.length > length;
+		if (length.hasOwnProperty('length')){
+			return value.length > length.length;
+		}else{
+			return value.length > length;
+		}
 	}
 	
 	Validate.prototype.shorterThan = function(length){ return this.check(this._shorterThan, Array.from(arguments)); }
 	Validate.prototype._shorterThan = function(length, value){
 		
 		//Perform checks
-		return value.length < length;
+		if (length.hasOwnProperty('length')){
+			return value.length < length.length;
+		}else{
+			return value.length < length;
+		}
 	}
 	
 	Validate.prototype.hasLength = function(length){ return this.check(this._hasLength, Array.from(arguments)); }
