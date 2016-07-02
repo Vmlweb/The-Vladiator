@@ -267,15 +267,6 @@
 		return value === false;
 	}
 	
-	Validate.prototype.notBool = function(){ return this.check(this._notBool); }
-	Validate.prototype._notBool = function(value){ return !this._isBool(value); }
-	Validate.prototype.isBool = function(){ return this.check(this._isBool); }
-	Validate.prototype._isBool = function(value){
-		
-		//Perform checks
-		return typeof value === 'boolean';
-	}
-	
 	Validate.prototype.notNumber = function(){ return this.check(this._notNumber); }
 	Validate.prototype._notNumber = function(value){ return !this._isNumber(value); }
 	Validate.prototype.isNumber = function(){ return this.check(this._isNumber); }
