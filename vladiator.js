@@ -295,15 +295,14 @@
 	Validate.prototype._hasKey = function(searchKey, value){
 		
 		//Perform checks
-		var found = false;
 		for (var i in value){
 			if (value.hasOwnProperty(i)){
 				if (i === searchKey){
-					found = true;
+					return true;
 				}
 			}
 		}
-		return found;
+		return false;
 	}
 	
 	Validate.prototype.missingValue = function(searchValue){ return this.check(this._missingValue, Array.from(arguments)); }
@@ -312,15 +311,14 @@
 	Validate.prototype._hasValue = function(searchValue, value){
 		
 		//Perform checks
-		var found = false;
 		for (var i in value){
 			if (value.hasOwnProperty(i)){
 				if (value[i] === searchValue){
-					found = true;
+					return true;
 				}
 			}
 		}
-		return found;
+		return false;
 	}
 	
 	Validate.prototype.missingKeyValue = function(searchKey, searchValue){ return this.check(this._missingKeyValue, Array.from(arguments)); }
@@ -329,15 +327,14 @@
 	Validate.prototype._hasKeyValue = function(searchKey, searchValue, value){
 		
 		//Perform checks
-		var found = false;
 		for (var i in value){
 			if (value.hasOwnProperty(i)){
 				if (i === searchKey && value[i] === searchValue){
-					found = true;
+					return true;
 				}
 			}
 		}
-		return found;
+		return false;
 	}
 	
 	//! Misc Checks

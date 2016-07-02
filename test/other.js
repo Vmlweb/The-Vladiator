@@ -69,6 +69,18 @@ describe('Other', function() {
 		test2.didFail().should.equal(expected);
 	});
 
+	it('should fail for invalid mongo object id number', function () {
+		
+		var test = validate(5).isMongoId();
+		var test2 = validate(5).notMongoId();
+		var expected = false;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+		test2.didPass().should.not.equal(expected);
+		test2.didFail().should.equal(expected);
+	});
+
 	it('should fail for invalid mongo object id string', function () {
 		
 		var test = validate("test").isMongoId();
