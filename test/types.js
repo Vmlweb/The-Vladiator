@@ -349,4 +349,90 @@ describe('Types', function() {
 		test2.didFail().should.equal(expected);
 	});
 	
+	//! isParent
+	
+	it('should fail when undefined is parent', function () {
+		
+		var test = validate(undefined).isParent();
+		var test2 = validate(undefined).notParent();
+		var expected = false;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+		test2.didPass().should.not.equal(expected);
+		test2.didFail().should.equal(expected);
+	});
+	
+	it('should fail when null is parent', function () {
+		
+		var test = validate(null).isParent();
+		var test2 = validate(null).notParent();
+		var expected = false;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+		test2.didPass().should.not.equal(expected);
+		test2.didFail().should.equal(expected);
+	});
+	
+	it('should fail when bool is parent', function () {
+		
+		var test = validate(false).isParent();
+		var test2 = validate(false).notParent();
+		var expected = false;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+		test2.didPass().should.not.equal(expected);
+		test2.didFail().should.equal(expected);
+	});
+	
+	it('should fail when string is parent', function () {
+		
+		var test = validate("").isParent();
+		var test2 = validate("").notParent();
+		var expected = false;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+		test2.didPass().should.not.equal(expected);
+		test2.didFail().should.equal(expected);
+	});
+	
+	it('should fail when number is parent', function () {
+		
+		var test = validate(5).isParent();
+		var test2 = validate(5).notParent();
+		var expected = false;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+		test2.didPass().should.not.equal(expected);
+		test2.didFail().should.equal(expected);
+	});
+	
+	it('should pass when array is parent', function () {
+		
+		var test = validate([]).isParent();
+		var test2 = validate([]).notParent();
+		var expected = true;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+		test2.didPass().should.not.equal(expected);
+		test2.didFail().should.equal(expected);
+	});
+	
+	it('should pass when object is parent', function () {
+		
+		var test = validate({}).isParent();
+		var test2 = validate({}).notParent();
+		var expected = true;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+		test2.didPass().should.not.equal(expected);
+		test2.didFail().should.equal(expected);
+	});
+	
 });
