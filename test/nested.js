@@ -21,6 +21,34 @@ describe('Nested', function() {
 		test2.didFail().should.equal(expected);
 	});
 	
+	it('should fail when array contains integers notted', function () {
+		
+		var arr = [1, 2, 3, 4, 5];
+		
+		var test = validate(arr).extract().not().isNumber();
+		var test2 = validate(arr).extract().not().notNumber();
+		var expected = false;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+		test2.didPass().should.not.equal(expected);
+		test2.didFail().should.equal(expected);
+	});
+	
+	it('should pass when array contains integers and is higher than 1', function () {
+		
+		var arr = [4, 2, 3, 4, 5];
+		
+		var test = validate(arr).extract().isNumber().higherThan(1);
+		var test2 = validate(arr).extract().notNumber().higherThan(1);
+		var expected = true;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+		test2.didPass().should.not.equal(expected);
+		test2.didFail().should.equal(expected);
+	});
+	
 	it('should fail when array contains integers and a string', function () {
 		
 		var arr = [1, 2, "3", 4, 5];
@@ -208,6 +236,34 @@ describe('Nested', function() {
 		
 		var test = validate(arr).extract().recursive().isNumber();
 		var test2 = validate(arr).extract().recursive().notNumber();
+		var expected = true;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+		test2.didPass().should.not.equal(expected);
+		test2.didFail().should.equal(expected);
+	});
+	
+	it('should pass when array contains integers notted', function () {
+		
+		var arr = [1, [1, 2, 3, 4], 3, [1, [1, 2, 3], 3, 4], 5];
+		
+		var test = validate(arr).extract().recursive().not().isNumber();
+		var test2 = validate(arr).extract().recursive().not().notNumber();
+		var expected = false;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+		test2.didPass().should.not.equal(expected);
+		test2.didFail().should.equal(expected);
+	});
+	
+	it('should pass when array contains integers and higher than 1', function () {
+		
+		var arr = [2, [4, 2, 3, 4], 3, [4, [3, 2, 3], 3, 4], 5];
+		
+		var test = validate(arr).extract().recursive().isNumber().higherThan(1);
+		var test2 = validate(arr).extract().recursive().notNumber().higherThan(1);
 		var expected = true;
 		
 		test.didPass().should.equal(expected);
