@@ -216,26 +216,27 @@ validate(data).hasKey('usernames').hasKey('emails')
 var database = {
 	users: {
 		metadata: {},
-		data: [
-			{ id: '507f1f77bcf86cd799439011', email: 'admin1@vmlweb.co.uk', born: 1467468682 },
-			{ id: '507f1f77bcf86cd799439012', email: 'admin2@vmlweb.co.uk', born: 1467468682 },
-			{ id: '507f1f77bcf86cd799439013', email: 'admin3@vmlweb.co.uk', born: 1467468682 },
-			{ id: '507f1f77bcf86cd799439014', email: 'admin4@vmlweb.co.uk', born: 1467468682 },
-			{ id: '507f1f77bcf86cd799439015', email: 'admin5@vmlweb.co.uk', born: 1467468682 },
-			{ id: '507f1f77bcf86cd799439016', email: 'admin6@vmlweb.co.uk', born: 1467468682 },
-			{ id: '507f1f77bcf86cd799439017', email: 'admin7@vmlweb.co.uk', born: 1467468682 },
-			{ id: '507f1f77bcf86cd799439018', email: 'admin8@vmlweb.co.uk', born: 1467468682 },
-			{ id: '507f1f77bcf86cd799439019', email: 'admin9@vmlweb.co.uk', born: 1467468682 }
+		ids: [
+			'507f1f77bcf86cd799439011',
+			'507f1f77bcf86cd799439012',
+			'507f1f77bcf86cd799439013',
+			'507f1f77bcf86cd799439014',
+			'507f1f77bcf86cd799439015',
+			'507f1f77bcf86cd799439016',
+			'507f1f77bcf86cd799439017',
+			'507f1f77bcf86cd799439018',
+			'507f1f77bcf86cd799439019',
+			'507f1f77bcf86cd799439020',
+			'507f1f77bcf86cd799439021'
 		]
 	}
 };
 
-validate(database)
-	.extract('users.data').hasKey('id').hasKey('email').hasKey('born')
-	.extract('id').isMongoId().is(function(value){
-		
-		var exists = true; //Check whether exists in database
-		return exists;
-	})
-	.throw('failed');
+validate(database).extract('users.ids').isMongoId().is(function(value){
+
+	//Check whether exists in database
+	var exists = true; 
+	return exists;
+	
+}).throw('failed');
 ```

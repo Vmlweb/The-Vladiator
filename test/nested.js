@@ -11,6 +11,42 @@ describe('Nested', function() {
 	
 	//! open
 	
+	it('should fail when nested property does not exist', function () {
+		
+		var obj = {
+			first: 'orange',
+			second: 'blue'
+		};
+		
+		var test = validate(obj).open('third').isString().is(primaryColor);
+		var test2 = validate(obj).open('first').isString().is(primaryColor);
+		var expected = false;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+		test2.didPass().should.equal(expected);
+		test2.didFail().should.not.equal(expected);
+	});
+	
+	it('should fail when deeper nested property does not exist', function () {
+		
+		var obj = {
+			first: { 
+				third: 'orange'
+			},
+			second: 'blue'
+		};
+		
+		var test = validate(obj).open('second.third').isString().is(primaryColor);
+		var test2 = validate(obj).open('first.third').isString().is(primaryColor);
+		var expected = false;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+		test2.didPass().should.equal(expected);
+		test2.didFail().should.not.equal(expected);
+	});
+	
 	it('should pass for custom primary colour checker when nested', function () {
 		
 		var obj = {

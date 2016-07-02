@@ -19,7 +19,7 @@
 	//! Nesting
 	
 	Validate.prototype.recursive = function(){ this._recursive = true; return this; }
-	Validate.prototype.extract = function(field = null){
+	Validate.prototype.extract = function(field){
 		this._extract = true;
 		
 		//Check whether should open field
@@ -36,10 +36,22 @@
 		if (field.indexOf(".") > -1){
 			var fields = field.split(".");
 			for (var i in fields){
-				this.value = this.value[fields[i]];
+				
+				//Fail if propery was not found
+				if (this.value.hasOwnProperty(fields[i])){
+					this.value = this.value[fields[i]];
+				}else{
+					this._fail = true;
+				}
 			}
 		}else{
-			this.value = this.value[field];
+			
+			//Fail if propery was not found
+			if (this.value.hasOwnProperty(field)){
+				this.value = this.value[field];
+			}else{
+				this._fail = true;
+			}
 		}
 		
 		return this;
