@@ -9,8 +9,8 @@
 	
 	var Validate = function(value){
 		this.value = value;
-		this.fail = false;
-		this.skip = false;
+		this._fail = false;
+		this._skip = false;
 		this._extract = false;
 		this._recursive = false;
 		this._not = false;
@@ -19,7 +19,7 @@
 	//! Misc
 	
 	Validate.prototype.not = function(){ this._not = true; return this; }
-	Validate.prototype.and = function(newValue){ this.skip = false; this.value = newValue; return this; }
+	Validate.prototype.and = function(newValue){ this._skip = false; this.value = newValue; return this; }
 	
 	Validate.prototype.extract = function(){ this._extract = true; return this; }
 	Validate.prototype.recursive = function(){ this._recursive = true; return this; }
@@ -28,13 +28,13 @@
 	
 	Validate.prototype.throws = function(exception){ if (this.didFail()){ throw exception; } };
 	
-	Validate.prototype.didPass = function(){ return !this.fail; }
-	Validate.prototype.didFail = function(){ return this.fail; }
+	Validate.prototype.didPass = function(){ return !this._fail; }
+	Validate.prototype.didFail = function(){ return this._fail; }
 	
 	//! Checking
 	
 	Validate.prototype.check = function(checkItem, args){
-		if (this.fail || this.skip){ return this; }
+		if (this._fail || this._skip){ return this; }
 		
 		//Perform checks
 		if (this._extract){
@@ -53,12 +53,12 @@
 								
 								//Validate deep child item
 								if (args){
-									this.fail = !checkItem.apply(this, args.concat([object[i], i]));
+									this._fail = !checkItem.apply(this, args.concat([object[i], i]));
 								}else{
-									this.fail = !checkItem.call(this, object[i]);
+									this._fail = !checkItem.call(this, object[i]);
 								}
-								if (this._not){ this.fail = !this.fail; }
-								if (this.fail){ return this; }
+								if (this._not){ this._fail = !this._fail; }
+								if (this._fail){ return this; }
 							}
 						}
 					}
@@ -73,12 +73,12 @@
 					
 						//Validate child item
 						if (args){
-							this.fail = !checkItem.apply(this, args.concat([this.value[i], i]));
+							this._fail = !checkItem.apply(this, args.concat([this.value[i], i]));
 						}else{
-							this.fail = !checkItem.call(this, this.value[i]);
+							this._fail = !checkItem.call(this, this.value[i]);
 						}
-						if (this._not){ this.fail = !this.fail; }
-						if (this.fail){ return this; }
+						if (this._not){ this._fail = !this._fail; }
+						if (this._fail){ return this; }
 					}
 				}
 			}
@@ -86,12 +86,12 @@
 			
 			//Validate parent item
 			if (args){
-				this.fail = !checkItem.apply(this, args.concat([this.value]));
+				this._fail = !checkItem.apply(this, args.concat([this.value]));
 			}else{
-				this.fail = !checkItem.call(this, this.value);
+				this._fail = !checkItem.call(this, this.value);
 			}
-			if (this._not){ this.fail = !this.fail; }
-			if (this.fail){ return this; }
+			if (this._not){ this._fail = !this._fail; }
+			if (this._fail){ return this; }
 		}
 		
 		this._not = false;
@@ -115,7 +115,7 @@
 		
 		//Perform checks
 		if (value === undefined){
-			this.skip = true;
+			this._skip = true;
 		}
 		return true;
 	}
@@ -131,7 +131,7 @@
 		
 		//Perform checks
 		if (value === undefined || value === null){
-			this.skip = true;
+			this._skip = true;
 		}
 		return true;
 	}
