@@ -21,8 +21,36 @@
 	Validate.prototype.not = function(){ this._not = true; return this; }
 	Validate.prototype.and = function(newValue){ this._skip = false; this.value = newValue; return this; }
 	
-	Validate.prototype.extract = function(){ this._extract = true; return this; }
 	Validate.prototype.recursive = function(){ this._recursive = true; return this; }
+	Validate.prototype.extract = function(field = null){
+		this._extract = true;
+		
+		//Check whether should open field
+		if (field){
+			return this.open(field);
+		}else{
+			return this;
+		}
+	}
+	
+	Validate.prototype.open = function(field){
+		
+		//Move one or more levels deeper into the value
+		if (field instanceof Array){
+			for (var i in field){
+				this.value = this.value[field[i]];
+			}
+		}else if (field.indexOf(".") > -1){
+			var fields = field.split(".");
+			for (var i in fields){
+				this.value = this.value[fields[i]];
+			}
+		}else{
+			this.value = this.value[field];
+		}
+		
+		return this;
+	}
 	
 	//! Completion
 	

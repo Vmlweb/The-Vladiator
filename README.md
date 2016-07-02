@@ -116,10 +116,18 @@ You can test whether your input is a certain type
 ### Nested Checks
 
 ```javascript
-//Iterates one level deep in arrays or objects, all subsequent checks will be performed on each
-.extract()
+//The value can be replaced with a nested object one or more levels deeper
+.open('key')
+.open('firstKey.secondKey')
+.open(['firstKey', 'secondKey'])
 
-//Iterates through all nested levels, all subsequent checks will be performed on each
+//Iterates checking inside arrays or objects, all subsequent checks will be performed on each
+.extract()
+.extract('key')
+.extract('firstKey.secondKey')
+.extract(['firstKey', 'secondKey'])
+
+//Iterates checking through all nested levels inside arrays or objects
 .recursive()
 ```
 
