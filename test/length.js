@@ -308,9 +308,27 @@ describe('Length', function() {
 		test.didFail().should.not.equal(expected);
 	});
 	
+	it('should pass when object has array length', function () {
+		
+		var test = validate({ h: 'h', e: 'e', l: 'l', d: 'l', o: 'o' }).hasLength([1, 2, 3, 4, 5]);
+		var expected = true;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+	});
+	
 	it('should fail when object has 6 length', function () {
 		
 		var test = validate({ h: 'h', e: 'e', l: 'l', d: 'l', o: 'o' }).hasLength(6);
+		var expected = false;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+	});
+	
+	it('should fail when object has array length', function () {
+		
+		var test = validate({ h: 'h', e: 'e', l: 'l', d: 'l', o: 'o' }).hasLength([1, 2, 3, 4, 5, 6]);
 		var expected = false;
 		
 		test.didPass().should.equal(expected);
@@ -364,9 +382,27 @@ describe('Length', function() {
 		test.didFail().should.not.equal(expected);
 	});
 	
+	it('should pass when array is longer than comparison array', function () {
+		
+		var test = validate(['h', 'e', 'y']).longerThan(['h', 'e' ]);
+		var expected = true;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+	});
+	
 	it('should pass when object is longer than 2', function () {
 		
 		var test = validate({ h: 'h', e: 'e', y: 'y' }).longerThan(2);
+		var expected = true;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+	});
+	
+	it('should pass when object is longer than comparison object', function () {
+		
+		var test = validate({ h: 'h', e: 'e', y: 'y' }).longerThan({ h: 'h', e: 'e' });
 		var expected = true;
 		
 		test.didPass().should.equal(expected);
@@ -402,9 +438,27 @@ describe('Length', function() {
 		test.didFail().should.not.equal(expected);
 	});
 	
+	it('should fail when array is shorter than comparison array', function () {
+		
+		var test = validate(['h', 'e', 'y']).shorterThan(['h', 'e' ]);
+		var expected = false;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+	});
+	
 	it('should fail when object is shorter than 2', function () {
 		
 		var test = validate({ h: 'h', e: 'e', y: 'y' }).shorterThan(2);
+		var expected = false;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+	});
+	
+	it('should fail when object is shorter than comparison object', function () {
+		
+		var test = validate({ h: 'h', e: 'e', y: 'y' }).shorterThan({ h: 'h', e: 'e' });
 		var expected = false;
 		
 		test.didPass().should.equal(expected);

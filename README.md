@@ -2,9 +2,9 @@
 
 [![Build Status](http://bamboo.vmlweb.co.uk:8085/plugins/servlet/wittified/build-status/OPEN-VLAD)](http://bamboo.vmlweb.co.uk:8085/browse/OPEN-VLAD)
 
-Javascript validation and assertion library.
+Javascript validation and assertion library. Any optimization suggestions are welcome.
 
-## Getting Started Vladiating
+## Getting Started
 
 Below are some basic examples of usage.
 
@@ -28,6 +28,12 @@ You can test whether your input is a certain type
 ```javascript
 .isBool()
 .notBool()
+
+.isTrue()
+.notTrue()
+
+.isFalse()
+.notFalse()
 
 .isNumber()
 .notNumber()
@@ -149,4 +155,10 @@ You can test whether your input is a certain type
 
 //Inverts the following checks result
 .not()
+```
+
+### Advanced Usage
+
+```javascript
+
 ```
