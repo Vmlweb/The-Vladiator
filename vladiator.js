@@ -11,8 +11,8 @@
 		this.value = value;
 		this.fail = false;
 		this.skip = false;
-		this.extract = false;
-		this.recursive = false;
+		this._extract = false;
+		this._recursive = false;
 		this._not = false;
 	}
 	
@@ -21,8 +21,8 @@
 	Validate.prototype.not = function(){ this._not = true; return this; }
 	Validate.prototype.and = function(newValue){ this.skip = false; this.value = newValue; return this; }
 	
-	Validate.prototype.extract = function(){ this.extract = true; return this; }
-	Validate.prototype.recursive = function(){ this.recursive = true; return this; }
+	Validate.prototype.extract = function(){ this._extract = true; return this; }
+	Validate.prototype.recursive = function(){ this._recursive = true; return this; }
 	
 	//! Completion Checks
 	
@@ -37,8 +37,8 @@
 		if (this.fail || this.skip){ return this; }
 		
 		//Perform checks
-		if (this.extract){
-			if (this.recursive){
+		if (this._extract){
+			if (this._recursive){
 				
 				//Recursive object validation
 				var checkObject;
