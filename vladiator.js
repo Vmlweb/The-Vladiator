@@ -212,7 +212,7 @@
 		if (length.hasOwnProperty('length') || this._isObject(length)){
 			return (this._isObject(value) ? Object.keys(value) : value).length > (this._isObject(length) ? Object.keys(length) : length).length;
 		}else{
-			return (this._isObject(value) ? Object.keys(value) : value).length > (this._isObject(length) ? Object.keys(length) : length);
+			return (this._isObject(value) ? Object.keys(value) : value).length > length;
 		}
 	}
 	
@@ -223,7 +223,7 @@
 		if (length.hasOwnProperty('length') || this._isObject(length)){
 			return (this._isObject(value) ? Object.keys(value) : value).length < (this._isObject(length) ? Object.keys(length) : length).length;
 		}else{
-			return (this._isObject(value) ? Object.keys(value) : value).length < (this._isObject(length) ? Object.keys(length) : length);
+			return (this._isObject(value) ? Object.keys(value) : value).length < length;
 		}
 	}
 	
@@ -234,7 +234,7 @@
 		if (length.hasOwnProperty('length') || this._isObject(length)){
 			return (this._isObject(value) ? Object.keys(value) : value).length === (this._isObject(length) ? Object.keys(length) : length).length;
 		}else{
-			return (this._isObject(value) ? Object.keys(value) : value).length === (this._isObject(length) ? Object.keys(length) : length);
+			return (this._isObject(value) ? Object.keys(value) : value).length === length;
 		}
 	}
 	

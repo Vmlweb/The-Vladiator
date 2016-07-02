@@ -252,9 +252,27 @@ describe('Length', function() {
 		test.didFail().should.not.equal(expected);
 	});
 	
+	it('should pass when array has array length', function () {
+		
+		var test = validate(['h','e','l','l','o']).hasLength([1, 2, 3, 4, 5]);
+		var expected = true;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+	});
+	
 	it('should fail when array has 6 length', function () {
 		
 		var test = validate(['h','e','l','l','o']).hasLength(6);
+		var expected = false;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+	});
+	
+	it('should fail when array has object length', function () {
+		
+		var test = validate(['h','e','l','l','o']).hasLength({ h: 'h', e: 'e', l: 'l', l: 'l', o: 'o' });
 		var expected = false;
 		
 		test.didPass().should.equal(expected);
