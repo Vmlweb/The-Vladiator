@@ -1,0 +1,28 @@
+{
+  "name": "the-vladiator",
+  "description": "Javascript validation and assertion library for checking incoming parameters.",
+  "main": "vladiator.js",
+  "authors": [
+    "Victor Leach <admin@vmlweb.co.uk>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "validator",
+    "assert",
+    "optional",
+    "parameter",
+    "check",
+    "recursive",
+    "object",
+    "property",
+    "search"
+  ],
+  "homepage": "https://github.com/Vmlweb/The-Vladiator",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
