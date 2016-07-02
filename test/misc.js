@@ -9,6 +9,8 @@ var primaryColor = function(value){
 
 describe('Misc', function() {
 	
+	//! is
+	
 	it('should pass for custom primary colour checker', function () {
 		
 		var test = validate("blue").isString().is(primaryColor);
@@ -20,6 +22,8 @@ describe('Misc', function() {
 		test2.didPass().should.not.equal(expected);
 		test2.didFail().should.equal(expected);
 	});
+	
+	//! not
 	
 	it('should pass for custom primary colour checker notted', function () {
 		
@@ -33,6 +37,8 @@ describe('Misc', function() {
 		test2.didFail().should.equal(expected);
 	});
 	
+	//! and
+	
 	it('should pass for custom primary colour checker using multiple values', function () {
 		
 		var test = validate("blue").isString().is(primaryColor).and("yellow").isString().is(primaryColor).and("green").isString().is(primaryColor);
@@ -44,6 +50,8 @@ describe('Misc', function() {
 		test2.didPass().should.not.equal(expected);
 		test2.didFail().should.equal(expected);
 	});
+	
+	//! throws
 	
 	it('should not throw for custom primary colour checker', function (done) {
 		try{

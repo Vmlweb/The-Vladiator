@@ -343,7 +343,7 @@
 	//! Misc Checks
 	
 	Validate.prototype.notEmail = function(){ return this.check(this._notEmail); }
-	Validate.prototype._notEmail = function(value){ return !this.isEmail(value); }
+	Validate.prototype._notEmail = function(value){ return !this._isEmail(value); }
 	Validate.prototype.isEmail = function(){ return this.check(this._isEmail); }
 	Validate.prototype._isEmail = function(value){
 		
@@ -352,7 +352,7 @@
 	}
 	
 	Validate.prototype.notMongoId = function(){ return this.check(this._notMongoId); }
-	Validate.prototype._notMongoId = function(value){ return !this._notMongoId(value); }
+	Validate.prototype._notMongoId = function(value){ return !this._isMongoId(value); }
 	Validate.prototype.isMongoId = function(){ return this.check(this._isMongoId); }
 	Validate.prototype._isMongoId = function(value){
 		
@@ -375,4 +375,5 @@
 	}else{
 		window.validate = function(value){ return new Validate(value); };
 	}
+	
 })();
