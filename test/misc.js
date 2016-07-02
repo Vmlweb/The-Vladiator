@@ -53,30 +53,30 @@ describe('Misc', function() {
 	
 	//! lowerCase
 	
-	it('should pass for custom primary colour checker with lower case', function () {
+	it('should pass for equality check with lower case', function () {
 		
-		var test = validate('BLUE').isString().lowerCase().is(primaryColor);
-		var test2 = validate('BLUE').isString().is(primaryColor);
+		var test = validate('BLUE').isString().lowerCase().isEqual('blue');
+		var test2 = validate('BLUE').isString().notEqual('blue');
 		var expected = true;
 		
 		test.didPass().should.equal(expected);
 		test.didFail().should.not.equal(expected);
-		test2.didPass().should.not.equal(expected);
-		test2.didFail().should.equal(expected);
+		test2.didPass().should.equal(expected);
+		test2.didFail().should.not.equal(expected);
 	});
 	
 	//! upperCase
 	
-	it('should fail for custom primary colour checker with upper case', function () {
+	it('should pass for equality check with upper case', function () {
 		
-		var test = validate('blue').isString().upperCase().is(primaryColor);
-		var test2 = validate('blue').isString().is(primaryColor);
-		var expected = false;
+		var test = validate('blue').isString().upperCase().isEqual('BLUE');
+		var test2 = validate('blue').isString().notEqual('BLUE');
+		var expected = true;
 		
 		test.didPass().should.equal(expected);
 		test.didFail().should.not.equal(expected);
-		test2.didPass().should.not.equal(expected);
-		test2.didFail().should.equal(expected);
+		test2.didPass().should.equal(expected);
+		test2.didFail().should.not.equal(expected);
 	});
 	
 	//! throws
