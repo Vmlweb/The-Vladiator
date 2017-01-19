@@ -1,6 +1,6 @@
-declare module "vladiator" {
+declare module 'the-vladiator'{
 
-	declare class Validate {
+	class Validate {
 	    
 	    //! Class
 	    
@@ -193,4 +193,8 @@ declare module "vladiator" {
 	    isMongoEnum(type: any, field: any): this
 	    _isMongoEnum(type: any, field: any, value: any): boolean
 	}
+	
+	function validate(value: any): Validate
+	
+	export = validate
 }
