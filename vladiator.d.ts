@@ -196,5 +196,7 @@ declare module 'the-vladiator'{
 	
 	function validate(value: any): Validate
 	
+	namespace validate{ }
+	
 	export = validate
 }
