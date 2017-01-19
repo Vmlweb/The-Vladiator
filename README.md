@@ -4,6 +4,8 @@
 
 Javascript validation and assertion library. Any optimization suggestions are welcome.
 
+Includes Typescript definitions.
+
 ## Installation
 
 You can grab the latest version via NPM or Bower.
