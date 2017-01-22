@@ -2,7 +2,7 @@
 
 [![Build Status](http://bamboo.vmlweb.co.uk:8085/plugins/servlet/wittified/build-status/OPEN-VLAD)](http://bamboo.vmlweb.co.uk:8085/browse/OPEN-VLAD)
 
-Javascript validation and assertion library. Any optimization suggestions are welcome.
+Javascript validation and assertion library. Suggestions are welcome.
 
 Includes Typescript definitions.
 
