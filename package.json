@@ -1,6 +1,6 @@
 {
   "name": "the-vladiator",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Javascript validation and assertion library for checking incoming parameters.",
   "main": "vladiator.js",
   "types": "vladiator.d.ts",
@@ -38,7 +38,7 @@
     "property",
     "search"
   ],
-  "author": "Victor Leach <admin@vmlweb.co.uk>",
+  "author": "Victor Leach <mail@vmlweb.co.uk>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Vmlweb/Vladiator/issues"

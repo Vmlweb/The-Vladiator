@@ -3,7 +3,7 @@
   "description": "Javascript validation and assertion library for checking incoming parameters.",
   "main": "vladiator.js",
   "authors": [
-    "Victor Leach <admin@vmlweb.co.uk>"
+    "Victor Leach <mail@vmlweb.co.uk>"
   ],
   "license": "MIT",
   "keywords": [
