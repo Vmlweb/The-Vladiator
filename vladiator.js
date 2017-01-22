@@ -323,7 +323,7 @@
 	Validate.prototype._isNumber = function(value){
 		
 		//Perform checks
-		return typeof value === 'number';
+		return typeof value === 'number' && value !== NaN;
 	}
 	
 	Validate.prototype.notString = function(){ return this.check(this._notString); }
