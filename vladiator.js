@@ -174,7 +174,7 @@
 	Validate.prototype._valueOptional = function(value){
 		
 		//Perform checks
-		if (value === undefined || value === null){
+		if (value === undefined || value === null || value === NaN){
 			this._skip = true;
 		}
 		return true;
@@ -183,7 +183,7 @@
 	Validate.prototype._valueRequired = function(value){
 		
 		//Perform checks
-		return value !== undefined && value !== null;
+		return value !== undefined && value !== null && value !== NaN;
 	}
 	
 	//! Equality Checks

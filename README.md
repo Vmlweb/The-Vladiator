@@ -126,10 +126,10 @@ You can test whether your input is a certain type.
 //Skips remaining checks if value is undefined
 .isOptional()
 
-//Ensures that value is defined and not null
+//Ensures that value is defined, not null and not NaN
 .valueRequired()
 
-//Skips remaining checks if value is undefined or null
+//Skips remaining checks if value is undefined, null or NaN
 .valueOptional()
 ```
 
