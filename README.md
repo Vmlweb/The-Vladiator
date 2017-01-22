@@ -18,7 +18,7 @@ bower install --save the-vladiator
 Then either use require through NodeJS.
 
 ```javascript
-var validate = require('the-vladiator');
+const validate = require('the-vladiator');
 validate('email@email.com')
 ```
 
