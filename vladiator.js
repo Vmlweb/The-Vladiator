@@ -158,7 +158,7 @@
 	Validate.prototype._isOptional = function(value){
 		
 		//Perform checks
-		if (value === undefined || value === NaN){
+		if (value === undefined){
 			this._skip = true;
 		}
 		return true;
@@ -167,14 +167,14 @@
 	Validate.prototype._isRequired = function(value){
 		
 		//Perform checks
-		return value !== undefined && value !== NaN;
+		return value !== undefined;
 	}
 	
 	Validate.prototype.valueOptional = function(){ return this.check(this._valueOptional); }
 	Validate.prototype._valueOptional = function(value){
 		
 		//Perform checks
-		if (value === undefined || value === null || value === NaN){
+		if (value === undefined || value === null){
 			this._skip = true;
 		}
 		return true;
@@ -183,7 +183,7 @@
 	Validate.prototype._valueRequired = function(value){
 		
 		//Perform checks
-		return value !== undefined && value !== null && value !== NaN;
+		return value !== undefined && value !== null;
 	}
 	
 	//! Equality Checks
@@ -323,7 +323,7 @@
 	Validate.prototype._isNumber = function(value){
 		
 		//Perform checks
-		return typeof value === 'number' && value !== NaN;
+		return typeof value === 'number';
 	}
 	
 	Validate.prototype.notString = function(){ return this.check(this._notString); }
