@@ -37,20 +37,20 @@
 			var fields = field.split(".");
 			for (var i in fields){
 				
-				//Fail if propery was not found
+				//Set to undefined if propery was not found
 				if (this.value.hasOwnProperty(fields[i])){
 					this.value = this.value[fields[i]];
 				}else{
-					this._fail = true;
+					this.value = undefined;
 				}
 			}
 		}else{
 			
-			//Fail if propery was not found
+			//Set to undefined if propery was not found
 			if (this.value.hasOwnProperty(field)){
 				this.value = this.value[field];
 			}else{
-				this._fail = true;
+				this.value = undefined;
 			}
 		}
 		

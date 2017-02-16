@@ -182,7 +182,8 @@ You can test whether your input is a certain type.
 .notMongoId()
 
 //Checks whether value is an Enum.
-.isMongoEnum(type, field) //Takes a mongoose model and property name respectively
+//Arguments are a mongoose model or schema and property name string
+.isMongoEnum(type, field)
 .notMongoEnum(type, field)
 ```
 
