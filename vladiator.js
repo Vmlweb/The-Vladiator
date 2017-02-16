@@ -437,7 +437,7 @@
 	Validate.prototype._isMongoEnum = function(type, field, value){
 		
 		//Perform checks
-		return type.schema.path(field).enumValues.indexOf(value) >= 0;
+		return (type.hasOwnProperty('schema') ? type.schema : type).path(field).enumValues.indexOf(value) >= 0;
 	}
 	
 	//! Browser Compatibility
