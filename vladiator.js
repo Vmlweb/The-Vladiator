@@ -57,10 +57,17 @@
 		return this;
 	}
 	
-	//! Value
+	//! Utility
 	
 	Validate.prototype.not = function(){ this._not = true; return this; }
-	Validate.prototype.and = function(newValue){ this._skip = false; this.value = newValue; return this; }
+	Validate.prototype.and = function(newValue){
+		this._skip = false;
+		this._extract = false;
+		this._recursive = false;
+		this._not = false;
+		this.value = newValue;
+		return this;
+	}
 	
 	Validate.prototype.upperCase = function(){ this.value = this.value.toUpperCase(); return this; }
 	Validate.prototype.lowerCase = function(){ this.value = this.value.toLowerCase(); return this; }
