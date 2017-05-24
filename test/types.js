@@ -119,6 +119,18 @@ describe('Types', function() {
 		test2.didFail().should.equal(expected);
 	});
 	
+	it('should fail when date is bool', function () {
+		
+		var test = validate(new Date()).isBool();
+		var test2 = validate(new Date()).notBool();
+		var expected = false;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+		test2.didPass().should.not.equal(expected);
+		test2.didFail().should.equal(expected);
+	});
+	
 	it('should fail when array is bool', function () {
 		
 		var test = validate([]).isBool();
@@ -205,6 +217,18 @@ describe('Types', function() {
 		test2.didFail().should.equal(expected);
 	});
 	
+	it('should fail when date is string', function () {
+		
+		var test = validate(new Date()).isString();
+		var test2 = validate(new Date()).notString();
+		var expected = false;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+		test2.didPass().should.not.equal(expected);
+		test2.didFail().should.equal(expected);
+	});
+	
 	it('should fail when array is string', function () {
 		
 		var test = validate([]).isString();
@@ -221,6 +245,104 @@ describe('Types', function() {
 		
 		var test = validate({}).isString();
 		var test2 = validate({}).notString();
+		var expected = false;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+		test2.didPass().should.not.equal(expected);
+		test2.didFail().should.equal(expected);
+	});
+	
+	//! isDate
+	
+	it('should fail when undefined is date', function () {
+		
+		var test = validate(undefined).isDate();
+		var test2 = validate(undefined).notDate();
+		var expected = false;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+		test2.didPass().should.not.equal(expected);
+		test2.didFail().should.equal(expected);
+	});
+	
+	it('should fail when null is date', function () {
+		
+		var test = validate(null).isDate();
+		var test2 = validate(null).notDate();
+		var expected = false;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+		test2.didPass().should.not.equal(expected);
+		test2.didFail().should.equal(expected);
+	});
+	
+	it('should fail when bool is date', function () {
+		
+		var test = validate(false).isDate();
+		var test2 = validate(false).notDate();
+		var expected = false;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+		test2.didPass().should.not.equal(expected);
+		test2.didFail().should.equal(expected);
+	});
+	
+	it('should fail when string is date', function () {
+		
+		var test = validate("").isDate();
+		var test2 = validate("").notDate();
+		var expected = false;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+		test2.didPass().should.not.equal(expected);
+		test2.didFail().should.equal(expected);
+	});
+	
+	it('should fail when number is date', function () {
+		
+		var test = validate(5).isDate();
+		var test2 = validate(5).notDate();
+		var expected = false;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+		test2.didPass().should.not.equal(expected);
+		test2.didFail().should.equal(expected);
+	});
+	
+	it('should pass when date is date', function () {
+		
+		var test = validate(new Date()).isDate();
+		var test2 = validate(new Date()).notDate();
+		var expected = true;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+		test2.didPass().should.not.equal(expected);
+		test2.didFail().should.equal(expected);
+	});
+	
+	it('should fail when array is date', function () {
+		
+		var test = validate([]).isDate();
+		var test2 = validate([]).notDate();
+		var expected = false;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+		test2.didPass().should.not.equal(expected);
+		test2.didFail().should.equal(expected);
+	});
+	
+	it('should fail when object is date', function () {
+		
+		var test = validate({}).isDate();
+		var test2 = validate({}).notDate();
 		var expected = false;
 		
 		test.didPass().should.equal(expected);
@@ -283,6 +405,18 @@ describe('Types', function() {
 		
 		var test = validate(5).isArray();
 		var test2 = validate(5).notArray();
+		var expected = false;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+		test2.didPass().should.not.equal(expected);
+		test2.didFail().should.equal(expected);
+	});
+	
+	it('should fail when date is array', function () {
+		
+		var test = validate(new Date()).isArray();
+		var test2 = validate(new Date()).notArray();
 		var expected = false;
 		
 		test.didPass().should.equal(expected);
@@ -377,6 +511,18 @@ describe('Types', function() {
 		test2.didFail().should.equal(expected);
 	});
 	
+	it('should fail when date is object', function () {
+		
+		var test = validate(new Date()).isObject();
+		var test2 = validate(new Date()).notObject();
+		var expected = false;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+		test2.didPass().should.not.equal(expected);
+		test2.didFail().should.equal(expected);
+	});
+	
 	it('should fail when array is object', function () {
 		
 		var test = validate([]).isObject();
@@ -455,6 +601,18 @@ describe('Types', function() {
 		
 		var test = validate(5).isParent();
 		var test2 = validate(5).notParent();
+		var expected = false;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+		test2.didPass().should.not.equal(expected);
+		test2.didFail().should.equal(expected);
+	});
+	
+	it('should fail when date is parent', function () {
+		
+		var test = validate(new Date()).isParent();
+		var test2 = validate(new Date()).notParent();
 		var expected = false;
 		
 		test.didPass().should.equal(expected);

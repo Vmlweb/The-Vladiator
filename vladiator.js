@@ -342,6 +342,15 @@
 		return typeof value === 'string';
 	}
 	
+	Validate.prototype.notDate = function(){ return this.check(this._notDate); }
+	Validate.prototype._notDate = function(value){ return !this._isDate(value); }
+	Validate.prototype.isDate = function(){ return this.check(this._isDate); }
+	Validate.prototype._isDate = function(value){
+		
+		//Perform checks
+		return value instanceof Date;
+	}
+	
 	Validate.prototype.notArray = function(){ return this.check(this._notArray); }
 	Validate.prototype._notArray = function(value){ return !this._isArray(value); }
 	Validate.prototype.isArray = function(){ return this.check(this._isArray); }
@@ -357,7 +366,7 @@
 	Validate.prototype._isObject = function(value){
 		
 		//Perform checks
-		return value instanceof Object && !(value instanceof Array);
+		return value instanceof Object && !(value instanceof Array) && !(value instanceof Date);
 	}
 	
 	Validate.prototype.notParent = function(){ return this.check(this._notParent); }
@@ -366,7 +375,7 @@
 	Validate.prototype._isParent = function(value){
 		
 		//Perform checks
-		return value instanceof Object || value instanceof Array;
+		return (value instanceof Object || value instanceof Array) && !(value instanceof Date);
 	}
 	
 	//! Object Checks

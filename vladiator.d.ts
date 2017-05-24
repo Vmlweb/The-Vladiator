@@ -135,6 +135,12 @@ declare module 'the-vladiator'{
 	    isString(): any
 	    _isString(value: any): boolean
 	    
+	    notDate(): any
+	    _notDate(value: any): boolean
+	    
+	    isDate(): any
+	    _isDate(value: any): boolean
+	    
 	    notArray(): any
 	    _notArray(value: any): boolean
 	    
