@@ -68,6 +68,9 @@ You can test whether your input is a certain type.
 .isString()
 .notString()
 
+.isDate()
+.notDate()
+
 .isArray()
 .notArray()
 
