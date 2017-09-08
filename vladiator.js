@@ -378,6 +378,15 @@
 		return (value instanceof Object || value instanceof Array) && !(value instanceof Date);
 	}
 	
+	Validate.prototype.notBuffer = function(){ return this.check(this._notBuffer); }
+	Validate.prototype._notBuffer = function(value){ return !this._isBuffer(value); }
+	Validate.prototype.isBuffer = function(){ return this.check(this._isBuffer); }
+	Validate.prototype._isBuffer = function(value){
+		
+		//Perform checks
+		return typeof Buffer === 'function' && value instanceof Buffer;
+	}
+	
 	//! Object Checks
 	
 	Validate.prototype.missingKey = function(searchKey){ return this.check(this._missingKey, Array.from(arguments)); }

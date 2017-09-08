@@ -645,4 +645,113 @@ describe('Types', function() {
 		test2.didFail().should.equal(expected);
 	});
 	
+	//! isBuffer
+	
+	it('should fail when undefined is buffer', function () {
+		
+		var test = validate(undefined).isBuffer();
+		var test2 = validate(undefined).notBuffer();
+		var expected = false;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+		test2.didPass().should.not.equal(expected);
+		test2.didFail().should.equal(expected);
+	});
+	
+	it('should fail when null is buffer', function () {
+		
+		var test = validate(null).isBuffer();
+		var test2 = validate(null).notBuffer();
+		var expected = false;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+		test2.didPass().should.not.equal(expected);
+		test2.didFail().should.equal(expected);
+	});
+	
+	it('should fail when bool is buffer', function () {
+		
+		var test = validate(false).isBuffer();
+		var test2 = validate(false).notBuffer();
+		var expected = false;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+		test2.didPass().should.not.equal(expected);
+		test2.didFail().should.equal(expected);
+	});
+	
+	it('should fail when string is buffer', function () {
+		
+		var test = validate("").isBuffer();
+		var test2 = validate("").notBuffer();
+		var expected = false;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+		test2.didPass().should.not.equal(expected);
+		test2.didFail().should.equal(expected);
+	});
+	
+	it('should fail when number is buffer', function () {
+		
+		var test = validate(5).isBuffer();
+		var test2 = validate(5).notBuffer();
+		var expected = false;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+		test2.didPass().should.not.equal(expected);
+		test2.didFail().should.equal(expected);
+	});
+	
+	it('should fail when date is buffer', function () {
+		
+		var test = validate(new Date()).isBuffer();
+		var test2 = validate(new Date()).notBuffer();
+		var expected = false;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+		test2.didPass().should.not.equal(expected);
+		test2.didFail().should.equal(expected);
+	});
+	
+	it('should pass when buffer is buffer', function () {
+		
+		var test = validate(typeof Buffer === 'function' ? new Buffer('') : undefined).isBuffer();
+		var test2 = validate(typeof Buffer === 'function' ? new Buffer('') : undefined).notBuffer();
+		var expected = typeof Buffer === 'function';
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+		test2.didPass().should.not.equal(expected);
+		test2.didFail().should.equal(expected);
+	});
+	
+	it('should fail when array is buffer', function () {
+		
+		var test = validate([]).isBuffer();
+		var test2 = validate([]).notBuffer();
+		var expected = false;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+		test2.didPass().should.not.equal(expected);
+		test2.didFail().should.equal(expected);
+	});
+	
+	it('should fail when object is buffer', function () {
+		
+		var test = validate({}).isBuffer();
+		var test2 = validate({}).notBuffer();
+		var expected = false;
+		
+		test.didPass().should.equal(expected);
+		test.didFail().should.not.equal(expected);
+		test2.didPass().should.not.equal(expected);
+		test2.didFail().should.equal(expected);
+	});
 });
