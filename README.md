@@ -123,16 +123,16 @@ You can test whether your input is a certain type.
 ### Optional Checks
 
 ```javascript
-//Ensures the value is defined
+//Ensures that value is defined, not null and not NaN
 .isRequired()
 
-//Skips remaining checks if value is undefined
+//Skips remaining checks if value is undefined, null or NaN
 .isOptional()
 
-//Ensures that value is defined, not null and not NaN
+//Ensures the value is defined
 .valueRequired()
 
-//Skips remaining checks if value is undefined, null or NaN
+//Skips remaining checks if value is undefined
 .valueOptional()
 ```
 
@@ -188,6 +188,10 @@ You can test whether your input is a certain type.
 //Arguments are a mongoose model or schema and property name string
 .isMongoEnum(type, field)
 .notMongoEnum(type, field)
+
+//Checks whether value confirms to semver
+.isSemver(version)
+.notSemver(version)
 ```
 
 ### Other Stuff
@@ -266,8 +270,8 @@ var database = {
 validate(database).extract('users.ids').isMongoId().is(function(value){
 
 	//Check whether exists in database
-	var exists = true; 
+	var exists = true;
 	return exists;
-	
+
 }).throw('failed');
 ```

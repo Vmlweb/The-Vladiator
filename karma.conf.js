@@ -1,6 +1,6 @@
 module.exports = function(config) {
 	config.set({
-		
+
 		//Plugins
 		frameworks: ['mocha', 'chai'],
 		plugins: [
@@ -11,17 +11,17 @@ module.exports = function(config) {
 			'karma-mocha',
 			'karma-chai'
 		],
-		
+
 		//Includes
 		files: ['vladiator.js', 'test/*.js'],
 		preprocessors: { 'vladiator.js': ['coverage'] },
 		reporters: ['mocha', 'junit', 'coverage'],
-		
+
 		//Browser
 		browsers: ['PhantomJS'],
 		singleRun: true,
 		autoWatch: false,
-		
+
 		//Reporters
 		coverageReporter: {
 			reporters: [

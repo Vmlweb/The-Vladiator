@@ -4,22 +4,22 @@ if (typeof module !== 'undefined' && typeof module.exports !== 'undefined'){
 }
 
 describe('Use Cases', function() {
-	
+
 	it('should pass when checking password for minimum and max characters', function () {
-		
+
 		var test = validate('myPassword').isString().longerThan(6).shorterThan(20).notContains('password').notEmail();
 		var test2 = validate('myVeryLong20Characterpassword').isString().longerThan(6).shorterThan(20).notContains('password').notEmail();
 		var expected = true;
-		
+
 		test.didPass().should.equal(expected);
 		test.didFail().should.not.equal(expected);
 		test2.didPass().should.not.equal(expected);
 		test2.didFail().should.equal(expected);
-		
+
 	});
-	
+
 	it('should pass when checking usernames and emails', function () {
-		
+
 		var data = {
 			usernames: [
 				'User1',
@@ -36,20 +36,20 @@ describe('Use Cases', function() {
 				'admin5@vmlweb.co.uk'
 			]
 		};
-		
+
 		var test = validate(data).extract('usernames').isString().notEmpty().and(data).extract('emails').isString().isEmail();
 		var test2 = validate(data).extract('usernames').isString().notEmpty().and(data).extract('emails').isString().notContains('vmlweb.co.uk').isEmail();
 		var expected = true;
-		
+
 		test.didPass().should.equal(expected);
 		test.didFail().should.not.equal(expected);
 		test2.didPass().should.not.equal(expected);
 		test2.didFail().should.equal(expected);
-		
+
 	});
-	
+
 	it('should pass when checking database identifiers', function () {
-		
+
 		var database = {
 			users: {
 				metadata: {},
@@ -68,19 +68,19 @@ describe('Use Cases', function() {
 				]
 			}
 		};
-		
+
 		var test = validate(database).extract('users.ids').isMongoId().is(function(value){
 
 			//Check whether exists in database
 			var exists = true;
 			return exists;
 		});
-			
+
 		var expected = true;
-		
+
 		test.didPass().should.equal(expected);
 		test.didFail().should.not.equal(expected);
-		
+
 	});
-	
+
 });
