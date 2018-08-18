@@ -17,9 +17,9 @@ declare module 'the-vladiator'{
 		//! Nesting
 
 	    recursive(): this
-	    extract(field: string): this
+	    extract(field?: string): this
 
-	    open(field: string): this
+	    open(field?: string): this
 
 	    //! Value
 
